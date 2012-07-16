@@ -5,6 +5,7 @@ This R package provides several functions .
 
 
 Late update: 2012-07-16
+
 Contact
 
 Francisco Balao
