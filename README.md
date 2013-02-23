@@ -4,7 +4,7 @@ AFLPsim
 This R package provides several functions .
 
 
-Late update: 2012-07-16
+Late update: 2013-02-23
 
 Contact
 
