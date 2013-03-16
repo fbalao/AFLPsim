@@ -1,0 +1,11 @@
+Package: AFLPsim
+Type: Package
+Title: Amplified Fragment Length Polimorphism loci simulator and Detection of outlier loci
+Version: 0.1
+Date: 2012-09-30
+Authors@R: c(person("Francisco", "Balao", role = c("aut", "cre"),email = "fbalao@us.es"),person("Juan Luis", "García-Castaño", role = "aut",email = "jlgc@us.es"))
+Author: Francisco  Balao and Juan Luis Garcia-Castaño
+Maintainer: Francisco Balao <fbalao@us.es>
+Description: Este paquete produce genotipos de AFLP, también realiza hibridacion de poblaciones parentales bajo introgresion neutra y bajo seleccion
+License: GPL (>= 2)
+URL: http://www.r-project.org, http://personal.us.es/fbalao/fbalaoenglish.html
