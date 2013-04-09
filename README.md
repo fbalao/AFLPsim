@@ -1,5 +1,6 @@
 AFLPsim
 =======
+![AFLPsim](http://personal.us.es/fbalao/objetos/aflpsmall.jpg)
 
 This R package provides several functions .
 
