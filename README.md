@@ -18,12 +18,12 @@ Francisco Balao
 
 To install this package from the source code available here, download it, and set your Working Directory to wherever you save the tarred file. Then run the following command from the R console::
 
-# install.packages("AFLPsim_0.1.tar.gz", repos=NULL, type="source")
+   install.packages("AFLPsim_0.1.tar.gz", repos=NULL, type="source")
 
 
 
 To install the development version of ggplot2, it's easiest to use the `devtools` package:
 
-# install.packages("devtools")
-library(devtools)
-install_github("AFLPsim")
+   install.packages("devtools")
+   library(devtools)
+   install_github("AFLPsim")
