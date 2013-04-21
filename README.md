@@ -2,7 +2,7 @@ AFLPsim
 =======
 ![AFLPsim](http://personal.us.es/fbalao/objetos/aflpsmall.jpg)
 
-This R package provides several functions .
+This R package provides several functions for simulation and analysis of hybridization with dominat markers.
 
 
 Late update: 2013-02-23
