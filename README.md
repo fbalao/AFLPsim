@@ -22,7 +22,7 @@ To install this package from the source code available here, download it, and se
 
 
 
-To install the development version of ggplot2, it's easiest to use the `devtools` package:
+To install the development version of AFLPsim, it's easiest to use the `devtools` package:
 
    > install.packages("devtools")
    
