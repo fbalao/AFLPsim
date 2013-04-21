@@ -16,7 +16,7 @@ Francisco Balao
 
 ## Installation
 
-To install this package from the source code available here, download it, and set your Working Directory to wherever you save the tarred file. Then run the following command from the R console::
+To install this package from the source code available here, download it, and set your Working Directory to wherever you save the tarred file. Then run the following command from the R console:
 
    > install.packages("AFLPsim_0.1.tar.gz", repos=NULL, type="source")
 
