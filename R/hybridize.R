@@ -178,7 +178,7 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     
     #El modelo de introgresion neutra
     neutralmodel2<-function(x,y){
-      x + y - (0.5*(x*y)) - (0.25*(x+y))}
+      x + y - (0.5*(x*y)) - (0.25*(x^2+y^2))}
       
           
     f2<-neutralmodel2(pa1000,pb1000)
