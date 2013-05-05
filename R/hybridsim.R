@@ -152,9 +152,9 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     
     #El modelo de introgresion neutra
     neutralmodelbxb<-function(x,y){
-      ((3*y)+x-(y^2)-(x*y))/2}
+      ((3*x)+y-(x^2)-(x*y))/2}
     
-    fbxb<-neutralmodelbxb(pa1000,pb1000)
+    fbxb<-neutralmodelbxb(pb1000,pa1000)
     
     progeny<-matrix(1,1000,Nmarker)
     
@@ -168,7 +168,7 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     sel<-sample(1:Nmarker,Nsel)
     sel<-sort(sel)
     #Ya tenemos los fragmentos a seleccionar. Ahora vamos a seleccionar los fragmentos sel con una coeficiente de selecci??n S [1-10]
-    y2 <-((pa1000^2)-(3*(pa1000))- pb1000 + (pa1000*pb1000) + 2 )/2
+    y2 <-((pb1000^2)-(3*(pb1000))- pa1000 + (pa1000*pb1000) + 2 )/2
     y2[y2==0]<-0.00000000000000000000000000000000001
     y2<-y2[sel]
     selection<-function(z){
@@ -199,7 +199,7 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     
     #El modelo de introgresion neutra
     neutralmodel2<-function(x,y){
-      x + y - (0.5*(x*y)) - (0.25*(x+y))}
+      x + y - (0.5*(x*y)) - (0.25*(x^2+y^2))}
     
     
     f2<-neutralmodel2(pa1000,pb1000)

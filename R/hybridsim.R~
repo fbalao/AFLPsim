@@ -1,33 +1,43 @@
-hybridize <-
-function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Nsel=Nmarker*0.1,S=0){
-
-   Nmarker=ncol(pa) 
-   if (ncol(pa)!= ncol(pb))
-     stop("You need the same number of markers in parentals")
-   if (Nsel==0){ type="neutral"}
-   if (Nf1==0)
-    stop("at least 2 F1 hybrids")  
-   if (ncol(pa)!=ncol(pb))
-    stop("different number of fragments")
-   if (type=="neutral"){
+hybridsim <-
+function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Nsel=Nmarker*0.1,S=0,apa=0.5,apb=0.5){
+  if (Na==0 |Nb==0)
+    stop("at least 1 individuals in each parental population")
+  if (Nf1==0)
+    stop("at least 2 F1 hybrids")
+  
+  if (Na==0 |Nb==0)
+    stop("at least 1 individuals in each parental population")
+  
+  if (type=="neutral"){
     cat("########Neutral hybridization########")
     Nsel=Nmarker
     S=0
   }
-   markers<-paste("M",seq(1,Nmarker,1),sep="")
-   PA<-paste("PA",seq(1,nrow(pa),1),sep="")
-   PB<-paste("PB",seq(1,nrow(pb),1),sep="")
-   
-   colnames(pa)<-markers
-   rownames(pa)<-PA
-   colnames(pb)<-markers
-   rownames(pb)<-PB
-   
-   simulation<-list(PA= pa,PB= pb)
-
+  #Crea matriz de individuos con todo 1
+  pa<-matrix( 1,1000,Nmarker)
+  #Crea la matriz con alelos siguiendo la probabilida de la beta
+  p1<-rbeta(Nmarker,apa,apa)
+  fa<-p1*(2-p1)
+  for (i in 1:Nmarker)
+    pa[,i]<-rbinom(1000,1,fa[i])
+  pasel<-pa[sample(nrow(pa), Na), ]
+  
+  
+  
+  
+  pb<-matrix(1,1000,Nmarker)
+  p2<-rbeta(Nmarker,apb,apb)
+  fb<-p2*(2-p2)
+  for (i in 1:Nmarker)
+    pb[,i]<-rbinom(1000,1,fb[i])
+  
+  pbsel<-pb[sample(nrow(pb), Nb), ]
+  
+  #Creamos los individuos F1 siguiendo un modelo neutral pero queremos seleccionar algunos alelos. Para ello fabricamos un numero grande de progenie y luego recogemos los individuos que tengan los fragmentos outlier donde outlier es un vector de alelos (M1,M2,...)
+  
+  
   #Se calculas las frecuencias de lso parentales
-  pa<-as.matrix(pa)
-  pb<-as.matrix(pb)
+  
   fa1000<-apply(pa,2,mean)
   fb1000<-apply(pb,2,mean)
   pa1000<-1-sqrt(1-fa1000)
@@ -36,7 +46,19 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
   sel<-sample(1:Nmarker,Nsel)
   sel<-sort(sel)
   
- if (any(hybrid == "all" | hybrid=="F1"))
+  
+  markers<-paste("M",seq(1,Nmarker,1),sep="")
+  PA<-paste("PA",seq(1,nrow(pasel),1),sep="")
+  PB<-paste("PB",seq(1,nrow(pbsel),1),sep="")
+  
+  colnames(pasel)<-markers
+  rownames(pasel)<-PA
+  colnames(pbsel)<-markers
+  rownames(pbsel)<-PB
+  
+  simulation<-list(PA= pasel,PB= pbsel)
+  
+  if (any(hybrid == "all" | hybrid=="F1"))
     {
     #El modelo de introgresion neutra
     neutralmodel<-function(x,y){x+y-(x*y)}
@@ -130,9 +152,9 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     
     #El modelo de introgresion neutra
     neutralmodelbxb<-function(x,y){
-      ((3*x)+y-(x^2)-(x*y))/2}
+      ((3*y)+x-(y^2)-(x*y))/2}
     
-    fbxb<-neutralmodelbxb(pb1000,pa1000)
+    fbxb<-neutralmodelbxb(pa1000,pb1000)
     
     progeny<-matrix(1,1000,Nmarker)
     
@@ -146,7 +168,7 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     sel<-sample(1:Nmarker,Nsel)
     sel<-sort(sel)
     #Ya tenemos los fragmentos a seleccionar. Ahora vamos a seleccionar los fragmentos sel con una coeficiente de selecci??n S [1-10]
-    y2 <-((pb1000^2)-(3*(pb1000))- pa1000 + (pa1000*pb1000) + 2 )/2
+    y2 <-((pa1000^2)-(3*(pa1000))- pb1000 + (pa1000*pb1000) + 2 )/2
     y2[y2==0]<-0.00000000000000000000000000000000001
     y2<-y2[sel]
     selection<-function(z){
@@ -173,14 +195,13 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     simulation<-c(simulation,list(BxB=bxbsel))
   }
   else {simulation <- c(simulation, list(BxB= NA))}
-  
   if (any(hybrid == "all" | hybrid=="F2")){
     
     #El modelo de introgresion neutra
     neutralmodel2<-function(x,y){
       x + y - (0.5*(x*y)) - (0.25*(x+y))}
-      
-          
+    
+    
     f2<-neutralmodel2(pa1000,pb1000)
     
     progeny<-matrix(1,1000,Nmarker)
@@ -213,7 +234,7 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     f2sel<-progeny[sample(nrow(progeny), Nf2), ]
     
     #La ponemos bonita nombres de alelos e individuos
-
+    
     F2<-paste("F2",seq(1,nrow(f2sel),1),sep="_")
     
     colnames(f2sel)<-markers
@@ -221,9 +242,9 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     
     simulation<-c(simulation,list(F2=f2sel))
   }
-  else {simulation <- c(simulation, list(F2= NA))}
+  else {simulation <- c(simulation, list(F2= NA))}  
   
-    
+  
   if (S==0) {sel= NA}
   simulation<-c(simulation,list(SelMarkers=sel, S = S))
   class(simulation) <- "hybridsim"
