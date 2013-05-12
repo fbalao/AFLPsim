@@ -1,0 +1,16 @@
+Package: AFLPsim
+Type: Package
+Title: Hybrid simulation and genome scan for dominant markers
+Version: 0.1-1
+Encoding: latin1
+Date: 2013-05-05
+Authors@R: c(person("Francisco", "Balao", role = c("aut", "cre"),email = "fbalao@us.es"),person("Juan Luis", "García-Castaño", role = "aut",email = "jlgc@us.es"))
+Author: Francisco  Balao and Juan Luis Garcia-Castaño
+Maintainer: Francisco Balao <fbalao@us.es>
+Depends: introgress
+Description: This package is developed in the Plant Reproductive Biology Lab (RNM-214) - University of Seville. It contains hybrid simulation functions for dominant genetic data. It also provides several genome scan methods.
+License: GPL (>= 2)
+URL: http://www.r-project.org,
+        http://personal.us.es/fbalao/fbalaoenglish.html
+LazyData: true
+Packaged: 2013-05-12 18:09:11 UTC; fbalao
