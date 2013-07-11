@@ -217,7 +217,8 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     sel<-sample(1:Nmarker,Nsel)
     sel<-sort(sel)
     #Ya tenemos los fragmentos a seleccionar. Ahora vamos a seleccionar los fragmentos sel con una coeficiente de selecci??n S [1-10]
-    y2 <-((pa1000^2)-(3*(pa1000))- pb1000 + (pa1000*pb1000) + 2 )/2
+    ######Errrorrr
+    y2 <-(1-(((pa1000)+(pb1000))/2))^2
     y2[y2==0]<-0.00000000000000000000000000000000001
     y2<-y2[sel]
     selection<-function(z){

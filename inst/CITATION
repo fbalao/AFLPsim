@@ -1,11 +1,20 @@
-citHeader("A BibTeX entry for LaTeX users is")
+ \encoding{'latin1'}
+citHeader("To cite package 'AFLPsim' in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
 
 citEntry(entry = "Manual",
       title = "AFLPsim: Hybrid simulation and genome scan for dominant markers",
        author = personList(as.person("Francisco  Balao"),
-                               as.person("Juan Luis Garcia-Castaño")),
-       year= "2013",
+                               as.person("Juan Luis García-Castaño")),
+       year = year,
+       note = vers,
        url = "https://github.com/fbalao/AFLPsim",
-       note = "R package version 0.1-1",
-       key = "AFLPsim-package"
+       key = "AFLPsim-package",
+       textVersion =
+         paste("Francisco Balao & Juan Luis García-Castaño(",
+               year,
+               "). AFLPsim: Hybrid simulation and genome scan for dominant markers.",
+               vers, ".", sep="")
       )

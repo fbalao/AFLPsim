@@ -10,7 +10,7 @@ structure(function (x, col = c(2, 3, 4, "orange", "orchid", 7))
     plot(1, type = "n", axes = FALSE, ann = FALSE, col = c(2, 
         3, 4, 0, 7, 4))
     legend(x = "center", legend = c("PA", "PB", "F1", "BPA", 
-        "BPB", "Fx"), fill = colors, cex = 1.5, bty = "n", xjust = 0, 
+        "BPB", "Fx"), fill = col, cex = 1.5, bty = "n", xjust = 0, 
         yjust = 0, ncol = 5)
     par(mar = c(4, 6, 1, 2))
     barplot(t(x), names.arg = gen, col = col, ylab = "Proportion of individuals", 

@@ -1,7 +1,8 @@
+\encoding{'latin1'}
 Package: AFLPsim
 Type: Package
 Title: Hybrid simulation and genome scan for dominant markers
-Version: 0.1-1
+Version: 0.1-2
 Encoding: latin1
 Date: 2013-05-05
 Authors@R: c(person("Francisco", "Balao", role = c("aut", "cre"),email = "fbalao@us.es"),person("Juan Luis", "García-Castaño", role = "aut",email = "jlgc@us.es"))
