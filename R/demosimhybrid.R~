@@ -1,7 +1,6 @@
 demosimhybrid <-
 function(x,M=matrix(1,ncol=6, nrow=6),F=c(1,1,1,1,1,1))
   {
-  options(digits=4)
     if (sum(x)!=1)
     stop ("The initial proportions must sum 1")
     ono<-function(x){
