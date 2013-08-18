@@ -1,0 +1,24 @@
+* installing *source* package ‘AFLPsim’ ...
+** package ‘AFLPsim’ successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+
+NOTE: THIS PACKAGE IS NOW OBSOLETE.
+
+  The R-Genetics project has developed an set of enhanced genetics
+  packages to replace 'genetics'. Please visit the project homepage
+  at http://rgenetics.org for informtion.
+
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+
+NOTE: THIS PACKAGE IS NOW OBSOLETE.
+
+  The R-Genetics project has developed an set of enhanced genetics
+  packages to replace 'genetics'. Please visit the project homepage
+  at http://rgenetics.org for informtion.
+
+* DONE (AFLPsim)

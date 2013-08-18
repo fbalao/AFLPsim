@@ -1,0 +1,4 @@
+## System Requirements
+
+bayescan function  requires software Bayescan 2.1 installed in your computer. bayescan tries to guess the name of the executable program depending on the operating system. Specifically, the followings are used: "bayescan_2.1" under Linux (installed from sources), or "C:/Program Files/BayeScan2.1/binaries/BayeScan2.1_win32bits_cmd_line.exe" under Windows.
+

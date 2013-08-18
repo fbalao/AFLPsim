@@ -1,0 +1,446 @@
+
+R version 3.0.1 (2013-05-16) -- "Good Sport"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "AFLPsim"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('AFLPsim')
+
+NOTE: THIS PACKAGE IS NOW OBSOLETE.
+
+  The R-Genetics project has developed an set of enhanced genetics
+  packages to replace 'genetics'. Please visit the project homepage
+  at http://rgenetics.org for informtion.
+
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("bayescan")
+> ### * bayescan
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: bayescan
+> ### Title: Identifying candidate loci under natural selection with external
+> ###   application
+> ### Aliases: bayescan
+> ### Keywords: outlier hybridization genome scan
+> 
+> ### ** Examples
+> 
+> ## Not run
+> hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", Nsel=25, hybrid="F1", S=100)
+> outbayes<-bayescan(hybrids, filename="bayescanresults", nbp=10, pilot=50, burn=100)
+sh: 1: bayescan_2.1: not found
+[1] "Bayescan_2.1 not found"
+> outbayes
+NULL
+> 
+> 
+> 
+> cleanEx()
+> nameEx("demosimhybrid")
+> ### * demosimhybrid
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: demosimhybrid
+> ### Title: Demographic model of introgressive hybridization
+> ### Aliases: demosimhybrid
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> 
+> ## Example 1. Simulation under parental proportions,
+> ## similar fecundities and random mating 
+> inivalues<-c(0.5,0.5,0,0,0,0)
+> epi0.5<-demosimhybrid(inivalues)
+> epi0.5
+          PA        PB        F1       BPA       BPB     Fx
+G0 5.000e-01 5.000e-01 0.0000000 0.000e+00 0.000e+00 0.0000
+G1 2.500e-01 2.500e-01 0.5000000 0.000e+00 0.000e+00 0.0000
+G2 6.250e-02 6.250e-02 0.1250000 2.500e-01 2.500e-01 0.2500
+G3 3.516e-02 3.516e-02 0.0078120 1.562e-02 1.562e-02 0.8906
+G4 2.335e-03 2.335e-03 0.0024719 5.493e-04 5.493e-04 0.9918
+G5 8.015e-06 8.015e-06 0.0000109 1.154e-05 1.154e-05 0.9999
+attr(,"class")
+[1] "demosim.hybrid"
+> 
+> 
+> ## Example 2. Simulation under higher frecuency of parental B,
+> ## and higher fecundy of parental A and random mating
+> inivalues2<-c(0.25,0.75,0,0,0,0)
+> fecundities<-c(1,0.5,0.5,0.5,0.5,0.5)
+> epi0.75<-demosimhybrid(x=inivalues, F=fecundities)
+> epi0.75
+          PA        PB        F1       BPA       BPB     Fx
+G0 0.5000000 5.000e-01 0.000e+00 0.000e+00 0.000e+00 0.0000
+G1 0.4000000 2.000e-01 4.000e-01 0.000e+00 0.000e+00 0.0000
+G2 0.2758600 3.448e-02 1.379e-01 2.759e-01 1.379e-01 0.1379
+G3 0.3717330 8.712e-03 1.549e-02 6.196e-02 7.744e-03 0.5344
+G4 0.3111632 1.780e-04 5.470e-03 9.724e-03 2.279e-04 0.6732
+G5 0.1866000 1.023e-07 1.005e-04 3.086e-03 1.766e-06 0.8103
+G6 0.0694100 3.590e-13 3.686e-08 3.619e-05 1.985e-11 0.9306
+G7 0.0096000 1.431e-23 4.960e-14 5.092e-09 2.634e-20 0.9904
+G8 0.0001843 7.539e-43 2.748e-25 9.523e-16 1.420e-36 0.9998
+attr(,"class")
+[1] "demosim.hybrid"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("gscan")
+> ### * gscan
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: gscan
+> ### Title: Genome scan for hybrids
+> ### Aliases: gscan
+> ### Keywords: outlier hybridization genome scan
+> 
+> ### ** Examples
+> 
+> hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", S=5,Nsel=25, hybrid="F1")
+> 
+> outliers<-gscan(hybrids, type="F1", method="bal&gar-ca")
+[1] 0.8312
+[1] 0.1458
+[1] 0.04338
+[1] 1
+[1] 1.18e-12
+[1] 4.483e-09
+[1] 0.1074
+[1] 1
+[1] 0.5849
+[1] 0.0002131
+[1] 4.88e-18
+[1] 1
+[1] 0.0002102
+[1] 3.589e-11
+[1] 0.0007024
+[1] 0.0002134
+[1] 1
+[1] 4.446e-16
+[1] 2.579e-06
+[1] 0.1668
+> 
+> 
+> 
+> cleanEx()
+> nameEx("hybridindex")
+> ### * hybridindex
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: hybridindex
+> ### Title: Estimate hybrid index por 'hybridsim' objects
+> ### Aliases: hybridindex
+> ### Keywords: hybridization
+> 
+> ### ** Examples
+> 
+> ## simulate parentals and F1 hybrids
+> hybrids<-hybridsim(Nmarker=100, Na=100, Nb=100, Nf1=10, type="neutral", hybrid="F1")
+########Neutral hybridization########> 
+> ## estimate hybrid index
+> hest<-hybridindex(hybrids)
+prepare.data is working; this may take a moment
+Processing data for 10 individuals and 100 loci.
+est.h is working; this may take a few minutes
+> 
+> 
+> 
+> cleanEx()
+> nameEx("hybridize")
+> ### * hybridize
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: hybridize
+> ### Title: AFLP simulator with selection from parental data
+> ### Aliases: hybridize
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## AFLP profile Species A
+> SpeciesA<-read.table(system.file("/files/SpeciesA.txt",package="AFLPsim"),header=TRUE, row.names=1)
+> 
+> 
+> ## AFLP profile Species B
+> SpeciesB<-read.table(system.file("/files/SpeciesB.txt",package="AFLPsim"),header=TRUE, row.names=1)
+> 
+> ## simulate F1 hybrids
+> F1hybrids<-hybridize(pa=SpeciesA,pb=SpeciesB, Nf1=30, type="neutral", hybrid="F1")
+########Neutral hybridization########> 
+> 
+> 
+> cleanEx()
+> nameEx("hybridsim")
+> ### * hybridsim
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: hybridsim
+> ### Title: AFLP simulator with selection
+> ### Aliases: hybridsim
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", Nsel=25, hybrid="F1")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("plot.demosimhybrid")
+> ### * plot.demosimhybrid
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: plot.demosimhybrid
+> ### Title: Plotting 'demosimhybrid' objects
+> ### Aliases: plot.demosimhybrid
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## Example 1. Simulation under parental proportions,
+> ## similar fecundities and random mating 
+> inivalues<-c(0.5,0.5,0,0,0,0)
+> epi0.5<-demosimhybrid(inivalues)
+> epi0.5
+          PA        PB        F1       BPA       BPB     Fx
+G0 5.000e-01 5.000e-01 0.0000000 0.000e+00 0.000e+00 0.0000
+G1 2.500e-01 2.500e-01 0.5000000 0.000e+00 0.000e+00 0.0000
+G2 6.250e-02 6.250e-02 0.1250000 2.500e-01 2.500e-01 0.2500
+G3 3.516e-02 3.516e-02 0.0078120 1.562e-02 1.562e-02 0.8906
+G4 2.335e-03 2.335e-03 0.0024719 5.493e-04 5.493e-04 0.9918
+G5 8.015e-06 8.015e-06 0.0000109 1.154e-05 1.154e-05 0.9999
+attr(,"class")
+[1] "demosim.hybrid"
+> plot.demosimhybrid(epi0.5)
+> 
+> ## Example 2. Simulation under higher frecuency of Parental B,
+> ## and higher fecundy of Parental A and random mating
+> inivalues2<-c(0.25,0.75,0,0,0,0)
+> fecundities<-c(1,0.5,0.5,0.5,0.5,0.5)
+> epi0.75<-demosimhybrid(x=inivalues, F=fecundities)
+> epi0.75
+          PA        PB        F1       BPA       BPB     Fx
+G0 0.5000000 5.000e-01 0.000e+00 0.000e+00 0.000e+00 0.0000
+G1 0.4000000 2.000e-01 4.000e-01 0.000e+00 0.000e+00 0.0000
+G2 0.2758600 3.448e-02 1.379e-01 2.759e-01 1.379e-01 0.1379
+G3 0.3717330 8.712e-03 1.549e-02 6.196e-02 7.744e-03 0.5344
+G4 0.3111632 1.780e-04 5.470e-03 9.724e-03 2.279e-04 0.6732
+G5 0.1866000 1.023e-07 1.005e-04 3.086e-03 1.766e-06 0.8103
+G6 0.0694100 3.590e-13 3.686e-08 3.619e-05 1.985e-11 0.9306
+G7 0.0096000 1.431e-23 4.960e-14 5.092e-09 2.634e-20 0.9904
+G8 0.0001843 7.539e-43 2.748e-25 9.523e-16 1.420e-36 0.9998
+attr(,"class")
+[1] "demosim.hybrid"
+> plot.demosimhybrid(epi0.75)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("plot.hybridsim")
+> ### * plot.hybridsim
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: plot.hybridsim
+> ### Title: Plotting hybridsim objects
+> ### Aliases: plot.hybridsim
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate parentals and F1 hybrids
+> hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", S=1, Nsel=25, hybrid="F1")
+> 
+> plot.hybridsim(hybrids, hybrid="F1")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2arlequin")
+> ### * sim2arlequin
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2arlequin
+> ### Title: Converting hybridsim object to a Arlequin input file
+> ### Aliases: sim2arlequin
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate F1 hybrids
+> F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+########Neutral hybridization########> 
+> ## convert to Arlequin input file
+> sim2arlequin(F1hybrids,filename="F1hybrids_Arlequin.txt")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2bayescan")
+> ### * sim2bayescan
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2bayescan
+> ### Title: Converting hybridsim object to a Bayescan input file
+> ### Aliases: sim2bayescan
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate F1 hybrids
+> F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="selection", S=5, Nsel=25, hybrid="F1")
+> 
+> ## convert to Bayescan input file
+> sim2bayescan(F1hybrids,filename="F1hybrids_Bayescan.txt")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2genind")
+> ### * sim2genind
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2genind
+> ### Title: Converting a hybridsim object to a genind object
+> ### Aliases: sim2genind
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate F1 hybrids
+> F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+########Neutral hybridization########> 
+> ## convert to genind object
+> F1gen<-sim2genind(F1hybrids)
+Warning in df2genind(X, pop = pop, missing = NA, ploidy = 2, type = "PA") :
+  non-polymorphic marker(s) deleted
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2introgress")
+> ### * sim2introgress
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2introgress
+> ### Title: Converting hybridsim object to introgress
+> ### Aliases: sim2introgress
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate hybrids
+> hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="selection", hybrid="all")
+> 
+> ## convert to introgress input file
+> hybrids2<-sim2introgress(hybrids)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2newhybrids")
+> ### * sim2newhybrids
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2newhybrids
+> ### Title: Converting hybridsim object to a NewHybrids input file
+> ### Aliases: sim2newhybrids
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate hybrids
+> hybrids<-hybridsim(Nmarker=500,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="all")
+########Neutral hybridization########> 
+> ## convert to NewHybrids input file
+> sim2newhybrids(hybrids,filename="newhybridsinput.txt")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2popgene")
+> ### * sim2popgene
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2popgene
+> ### Title: Converting hybridsim object to a PopGene input file
+> ### Aliases: sim2popgene
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate F1 hybrids
+> F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+########Neutral hybridization########> 
+> ## convert to genepop input file
+> sim2popgene(F1hybrids,filename="F1hybrids_Popgene.txt")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("sim2structure")
+> ### * sim2structure
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: sim2structure
+> ### Title: Convert a hybridsim object to a STRUCTURE input file
+> ### Aliases: sim2structure
+> ### Keywords: hybridization simulation
+> 
+> ### ** Examples
+> 
+> ## simulate F1 hybrids
+> F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+########Neutral hybridization########> 
+> ## convert to STRUCTURE input file
+> sim2structure(F1hybrids,filename="F1hybrids_Structure.txt")
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  23.949 1.08 25.062 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

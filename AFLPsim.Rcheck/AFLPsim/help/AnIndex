@@ -1,0 +1,16 @@
+AFLPsim-package	AFLPsim-package
+bayescan	bayescan
+demosimhybrid	demosimhybrid
+gscan	gscan
+hybridindex	hybridindex
+hybridize	hybridize
+hybridsim	hybridsim
+plot.demosimhybrid	plot.demosimhybrid
+plot.hybridsim	plot.hybridsim
+sim2arlequin	sim2arlequin
+sim2bayescan	sim2bayescan
+sim2genind	sim2genind
+sim2introgress	sim2introgress
+sim2newhybrids	sim2newhybrids
+sim2popgene	sim2popgene
+sim2structure	sim2structure
