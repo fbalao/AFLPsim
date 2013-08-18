@@ -1,60 +1,48 @@
+\encoding{latin1}
 \name{bayescan}
 \alias{bayescan}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Identifying candidate loci under natural selection with External Application}
+\title{Identifying candidate loci under natural selection with external application}
 \description{
-These functions call Bayescan program from R to identifying candidate loci under natural selection from genetic data.
+This function calls Bayescan program from within R to identifying candidate loci under natural selection from genetic data.
 }
 \usage{
-bayescan(mat, filename, nbp = 20, pilot = 5000, burn = 50000, exec=NULL)
-%- maybe also 'usage' for other objects documented here.
-}
+bayescan(mat, filename, nbp = 20, pilot = 5000, burn = 50000, exec=NULL)}
 \arguments{
-  \item{mat}{
-A matrix with genotypic data to test
-}
-  \item{filename}{
-a character string giving the name of the output file
-}
-  \item{nbp}{
-Number of pilot runs, default is 2 
-}
-  \item{pilot}{
-Length of pilot runs, default is 50
-}
-  \item{burn}{
-Burnin length, default is 5000
-}
-  \item{exec}{
-a character string giving the path to bayescan, default it tries to guess it depending on the operating system (see details).
-}
+  \item{mat}{A matrix with genotypic data to test}
+  \item{filename}{a character string giving the name of the output file (without extension)}
+  \item{nbp}{Number of pilot runs (default is 2)}
+  \item{pilot}{Length of pilot runs (default is 50)}
+  \item{burn}{Burnin length (default is 5000)}
+  \item{exec}{a character string giving the path to BAYESCAN. By default it tries to guess it depending on the operating system (see details).}
 }
 \details{
-bayescan tries to guess the name of the executable program depending on the operating system. Specifically, the followings are used: “/home/BayeScan2.1/binaries/BayeScan2.1_linux32bits"” under Linux, or “C:/Program Files/BayeScan2.1/binaries/BayeScan2.1_win32bits_cmd_line.exe” under Windows. For Mac is under develop
+\code{bayescan} tries to guess the name of the executable program depending on the operating system. Specifically, the followings are used: "bayescan_2.1" under Linux and Mac, or "C:/Program Files/BayeScan2.1/binaries/BayeScan2.1_win32bits_cmd_line.exe" under Windows.
 }
 \value{
-A list with the following components:
-\item{resultfst}{XXXXXXX}
-\item{outliers}{a vector with outliers}
-\item{TP}{XXXXXXXXXX}
+Several files with the results and a data.frame with the following variables:
+\item{prob}{The posterior probability for the model including selection}
+\item{log10.PO.}{The logarithm of Posterior Odds to base 10}
+\item{qval}{q-values for each locus for the model including selection}
+\item{alpha}{The estimated alpha coefficient indicating the strength and direction of selection. See Bayescan 2.1 manual}
+\item{fst}{The Fst coefficient averaged over populations}
 }
 \references{
-Foll, M., and O. Gaggiotti. 2008. A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective. \emph{Genetics} \bold{180}: 977–93. 
+Foll, M. & O. Gaggiotti. 2008. A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective. \emph{Genetics} \bold{180}: 977-993. 
 }
 \author{
-F. Balao \email{fbalao@us.es}, Garcia-Castaño J.L.
+F. Balao \email{fbalao@us.es},  J.L. Garc�a-Casta�o 
 }
-
 \seealso{
 \code{\link{gscan}}
+\code{\link{sim2bayescan}}
 }
 \examples{
-hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", S=4,Nsel=25, hybrid="F1")
-
-outliers<-gscan(hybrids, type="F1", method="balao")
+## Not run
+hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", Nsel=25, hybrid="F1", S=100)
+outbayes<-bayescan(hybrids, filename="bayescanresults", nbp=10, pilot=50, burn=100)
+outbayes
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{outlier}
 \keyword{hybridization}
-\keyword{genome scan}% __ONLY ONE__ keyword per line
+\keyword{genome scan}

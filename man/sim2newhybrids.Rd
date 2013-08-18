@@ -1,36 +1,24 @@
+\encoding{latin1}
 \name{sim2newhybrids}
 \alias{sim2newhybrids}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Convert a aflpsim object to a NewHybrids input file}
+\title{Converting hybridsim object to a NewHybrids input file}
 \description{
-The function sim2newhybrids converts a AFLPsim object into a NewHybrids input file. 
+The function \code{sim2newhybrids} converts a AFLPsim object into a NewHybrids input file. }
+\usage{sim2newhybrids(x,filename)}
 
-}
-\usage{
-sim2newhybrids(x,filename)
-
-}
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-
-  \item{x}{
-a aflpsim object
-}
-  \item{filename}{
-a character string indicating the name of the output file}
+  \item{x}{a \code{\link{hybridsim}} object}
+  \item{filename}{a character string indicating the name of the output file}
 }
 
-\value{
-NewHybrids input file
-}
+\value{a NewHybrids input file}
 \references{
-Anderson, E.C. 2008. Bayesian inference of species hybrids using multilocus dominant genetic markers. \emph{Philosophical transactions of the Royal Society of London. Series B, Biological Sciences} \bold{363}: 2841–50. 
+Anderson, E.C. 2008. Bayesian inference of species hybrids using multilocus dominant genetic markers. \emph{Philosophical transactions of the Royal Society of London. Series B, Biological Sciences} \bold{363}: 2841-2850. 
 
-Anderson, E.C., and E.A. Thompson. 2002. A model-based method for identifying species hybrids using multilocus genetic data. \emph{Genetics} \bold{160}: 1217–1229.
+Anderson, E.C., & E.A. Thompson. 2002. A model-based method for identifying species hybrids using multilocus genetic data. \emph{Genetics} \bold{160}: 1217-1229.
 }
 
-\author{
-F. Balao \email{fbalao@us.es}, Garcia-Castaño J.L.
+\author{F. Balao \email{fbalao@us.es}, J.L. Garc�a-Casta�o 
 }
 
 \seealso{
@@ -41,11 +29,11 @@ F. Balao \email{fbalao@us.es}, Garcia-Castaño J.L.
 \code{\link{sim2structure}}
 }
 \examples{
-hybrids<-hybridsim(Nmarker=500,Na=100,Nb=100,Nf1=30,Nbxa=30,Nbxb=30, Nf2=30, type="neutral", hybrid="all")
+## simulate hybrids
+hybrids<-hybridsim(Nmarker=500,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="all")
 
-sim2newhybrids(hybrids,filename="F1newhybrids.txt")
+## convert to NewHybrids input file
+sim2newhybrids(hybrids,filename="newhybridsinput.txt")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{hybridization}
-\keyword{simulation}% __ONLY ONE__ keyword per line
+\keyword{simulation}

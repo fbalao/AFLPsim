@@ -1,6 +1,6 @@
 gscan <-
-function(mat, type=c("F1","BxA","BxB"), method=c("balao","gagnaire")){
-if (method=="balao" && type=="F1"){
+function(mat, type=c("F1","BxA","BxB"), method=c("bal&gar-ca","gagnaire")){
+if (method=="bal&gar-ca" && type=="F1"){
 pa<-apply(mat$PA,2,mean)
 pb<-apply(mat$PB,2,mean)
 pf1<-apply(mat$F1,2,mean)
@@ -112,7 +112,7 @@ return(result)
 }
 
 
-if (method=="balao" && type =="BxA"){
+if (method=="bal&gar-ca" && type =="BxA"){
 pa<-apply(mat$PA,2,mean)
 pb<-apply(mat$PB,2,mean)
 pf1<-apply(mat$BxA,2,mean)
@@ -223,7 +223,7 @@ result<-list(Pvalues=fdrf1,Outliers=sigf1)
 return(result)
 }
 
-if (method=="balao" && type =="BxB"){
+if (method=="bal&gar-ca" && type =="BxB"){
 pa<-apply(mat$PA,2,mean)
 pb<-apply(mat$PB,2,mean)
 pf1<-apply(mat$BxB,2,mean)

@@ -1,19 +1,18 @@
+\encoding{latin1}
 \name{sim2arlequin}
 \alias{sim2arlequin}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Convert a hybridsim object to a Arlequin input file}
+\title{Converting hybridsim object to a Arlequin input file}
 \description{
-The function sim2arlequin converts a hybridsim object into a Arlequin input file. 
+The function sim2arlequin converts a hybridsim  object into a Arlequin input file. 
 
 }
 \usage{
 sim2arlequin(x,filename)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
 
   \item{x}{
-a hybridsim object
+a \code{\link{hybridsim}} object
 }
   \item{filename}{
 a character string indicating the name of the output file}
@@ -23,10 +22,10 @@ a character string indicating the name of the output file}
 Arlequin input file
 }
 \references{
-Arlequin
+Excoffier L, Laval G, Schneider S (2005) Arlequin ver. 3.0: An integrated software package for population genetics data analysis. \emph{Evolutionary Bioinformatics Online}, \bold{1}, 47-50.
 }
 \author{
-F. Balao \email{fbalao@us.es}, Garcia-CastaÃ±o J.L.
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
 }
 
 \seealso{
@@ -37,11 +36,11 @@ F. Balao \email{fbalao@us.es}, Garcia-CastaÃ±o J.L.
 \code{\link{sim2structure}}
 }
 \examples{
+## simulate F1 hybrids
 F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
 
+## convert to Arlequin input file
 sim2arlequin(F1hybrids,filename="F1hybrids_Arlequin.txt")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{hybridization}
-\keyword{simulation}% __ONLY ONE__ keyword per line
+\keyword{simulation}

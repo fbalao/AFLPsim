@@ -13,7 +13,7 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     Nsel=Nmarker
     S=0
   }
-  if (S!=0){S=10^S}
+  S=10^S
   #Crea matriz de individuos con todo 1
   pa<-matrix( 1,1000,Nmarker)
   #Crea la matriz con alelos siguiendo la probabilida de la beta
@@ -37,7 +37,7 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
   #Creamos los individuos F1 siguiendo un modelo neutral pero queremos seleccionar algunos alelos. Para ello fabricamos un numero grande de progenie y luego recogemos los individuos que tengan los fragmentos outlier donde outlier es un vector de alelos (M1,M2,...)
   
   
-  #Se calculas las frecuencias de lso parentales
+  #Se calculas las frecuencias de los parentales
   
   fa1000<-apply(pa,2,mean)
   fb1000<-apply(pb,2,mean)

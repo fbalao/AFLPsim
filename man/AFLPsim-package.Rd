@@ -1,3 +1,4 @@
+\encoding{latin1}
 \name{AFLPsim-package}
 \alias{AFLPsim-package}
 \docType{package}
@@ -15,12 +16,12 @@ To cite AFLPsim, please use citation("AFLPsim")
 \tabular{ll}{
 Package: \tab AFLPsim\cr
 Type: \tab Package\cr
-Version: \tab 0.1-1\cr
-Date: \tab 2013-05-21\cr
+Version: \tab 0.1-3\cr
+Date: \tab 2013-08-8\cr
 License: \tab GPL (>= 2)\cr
 }
 }
 \author{
-Francisco Balao; Juan Luis Garcia CastaÃ±o
+Francisco Balao; Juan Luis \enc{García-Castaño}{Garcia-Castano}
 }
 \keyword{package}

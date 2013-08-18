@@ -1,35 +1,25 @@
+\encoding{latin1}
 \name{sim2popgene}
 \alias{sim2popgene}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Convert a hybridsim object to a PopGene input file}
+\title{Converting hybridsim object to a PopGene input file}
 \description{
-The function sim2newhybrids converts a hybridsim object into a PopGene input file. 
-
+The function \code{sim2popgene} converts a hybridsim object into a PopGene input file. 
 }
 \usage{
 sim2popgene(x,filename)
-
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-
-  \item{x}{
-a hybridsim object
+  \item{x}{a \code{\link{hybridsim}} object}
+  \item{filename}{a character string indicating the name of the output file}
 }
-  \item{filename}{
-a character string indicating the name of the output file}
-}
-
 \value{
-PopGene input file
+a PopGene input file
 }
 \references{
- Yeh FC, Yang RC, Boyle TBJ, Ye ZH, Mao JX (1997) popgene, the User-Friendly Sharewarefor Population Genetic Analysis. Molecular Biology and Biotechnology Centre, University of Alberta, Canada (program available from: \url{http://www.ualberta.ca/~fyeh/}).
+Yeh, F.C., R.C. Yang, T.B.J. Boyle, Z.H. Ye & J.X. Mao (1997) Popgene, the User-Friendly Sharewarefor Population Genetic Analysis. Molecular Biology and Biotechnology Centre, University of Alberta, Canada (program available from: \url{http://www.ualberta.ca/~fyeh/}).
 }
-\author{
-F. Balao \email{fbalao@us.es}, Garcia-CastaÃ±o J.L.
+\author{F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
 }
-
 \seealso{
 \code{\link{sim2arlequin}}
 \code{\link{sim2bayescan}}
@@ -38,11 +28,12 @@ F. Balao \email{fbalao@us.es}, Garcia-CastaÃ±o J.L.
 \code{\link{sim2structure}}
 }
 \examples{
+## simulate F1 hybrids
 F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
 
+## convert to genepop input file
 sim2popgene(F1hybrids,filename="F1hybrids_Popgene.txt")
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{hybridization}
-\keyword{simulation}% __ONLY ONE__ keyword per line
+\keyword{simulation}

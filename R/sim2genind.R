@@ -1,12 +1,13 @@
-sim2genind<-
-  function(x){
+sim2genind<-  function(x){
+      x$S <- NULL
+      x$SelMarkers <- NULL
       x<-x[!is.na(x)]
     if(class(x[[1]])=="list"){
       x<-unlist(x,recursive=F)
       x <- lapply(x, function(x)x[,-1 ])
     }
     N<-length(x)
-    N2<-N-1
+    N2<-N
     if (names(x)[N]=="S")
       x$S<-NULL
     popnames<-names(x)

@@ -1,6 +1,6 @@
 plot.hybridsim <-
 function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen", 
-    shade = 0.8, markers = x$SelMarkers) 
+    shade = 0.8, markers = x$SelMarkers,...) 
 {
     pa <- apply(x$PA, 2, mean)
     pb <- apply(x$PB, 2, mean)
@@ -23,8 +23,8 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
         teoricof1 <- model(pa, pb)
         z <- outer(x, y, model)
         resf1 <- persp(x, y, z, thet = -30, phi = 25, ticktype = "detailed", 
-            col = col, shade = shade, xlab = "Species A", 
-            ylab = "Species B", zlab = "F1")
+            col = col, shade = shade, xlab = "Parental A", 
+            ylab = "Parental B", zlab ="F1", cex.lab=1.2)
         points(trans3d(pa[i], pb[i], pf1[i], pmat = resf1), pch = 21, 
             col = 1, bg = 2, cex = 2)
         to <- trans3d(pa[i], pb[i], teoricof1[i], pmat = resf1)
@@ -43,8 +43,8 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
         teoricobx <- modelbcb(pa, pb)
         zbxb <- outer(x, y, modelbcb)
         resbxb <- persp(x, y, zbxb, thet = -30, phi = 25, ticktype = "detailed", 
-            col = col, shade = shade, xlab = "Species A", 
-            ylab = "Species B", zlab = "BxB")
+            col = col, shade = shade, xlab = "Parental A", 
+            ylab = "Parental B", zlab = "BxB", cex.lab=1.2)
         points(trans3d(pa[i], pb[i], pbxb[i], pmat = resbxb), 
             pch = 21, col = 1, bg = 2, cex = 2)
         to <- trans3d(pa[i], pb[i], teoricobx[i], pmat = resbxb)
@@ -63,8 +63,8 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
         teoricobxa <- modelbca(pa, pb)
         zbxa <- outer(x, y, modelbca)
         resbxa <- persp(x, y, zbxa, thet = -30, phi = 25, ticktype = "detailed", 
-            col = col, shade = shade, xlab = "Species A", 
-            ylab = "Species B", zlab = "BxA")
+            col = col, shade = shade, xlab = "Parental A", 
+            ylab = "Parental B", zlab = "BxA", cex.lab=1.2)
         points(trans3d(pa[i], pb[i], pbxa[i], pmat = resbxa), 
             pch = 21, col = 1, bg = 2, cex = 2)
         to <- trans3d(pa[i], pb[i], teoricobxa[i], pmat = resbxa)

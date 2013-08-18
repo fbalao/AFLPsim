@@ -8,17 +8,21 @@ function (mat, filename, nbp = 20, pilot = 5000, burn = 50000, exec=NULL)
        os <- Sys.info()[1]
     if (is.null(exec)) {
         if (os == "Linux") 
-            user<-Sys.getenv("USER") 
-            exec= paste("/home/",user, "/BayeScan2.1/binaries/BayeScan2.1_linux32bits", sep = "")
+            exec= "bayescan_2.1"
         if (os == "Darwin") 
-           stop("Not for Mac")
+            exec= "bayescan_2.1"
         if (os == "Windows") 
             shortPathName("C:/Program Files/BayeScan2.1/binaries/BayeScan2.1_win32bits_cmd_line.exe")
     }
     
     system(paste(exec, opts, filename))
     out <- paste(filename, "_fst.txt", sep = "")
+    if (file.exists(out)==FALSE){
+      print("Bayescan_2.1 not found")
+      return(NULL)
+    } 
+    else {
     resultfst <- read.table(out, header = T, row.names = 1)
-    result <- list(resultfst)
-    result
+    result <- resultfst
+    result}
 }
