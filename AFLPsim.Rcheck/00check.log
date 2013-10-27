@@ -1,10 +1,10 @@
-* using log directory ‘/media/7740fccf-fbb1-4329-89cb-1450faaf4596/AFLPsim_package/AFLPsim/AFLPsim.Rcheck’
-* using R version 3.0.1 (2013-05-16)
+* using log directory ‘/media/Datos/github/AFLPsim.Rcheck’
+* using R version 3.0.2 (2013-09-25)
 * using platform: i686-pc-linux-gnu (32-bit)
 * using session charset: UTF-8
 * checking for file ‘AFLPsim/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘AFLPsim’ version ‘0.1-4’
+* this is package ‘AFLPsim’ version ‘0.2-1’
 * package encoding: latin1
 * checking CRAN incoming feasibility ... OK
 Maintainer: ‘Francisco Balao <fbalao@us.es>’
@@ -32,13 +32,14 @@ Maintainer: ‘Francisco Balao <fbalao@us.es>’
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
 * checking loading without being on the library search path ... OK
-* checking for unstated dependencies in R code ... OK
+* checking dependencies in R code ... OK
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
 * checking R code for possible problems ... OK
 * checking Rd files ... OK
 * checking Rd metadata ... OK
+* checking Rd line widths ... OK
 * checking Rd cross-references ... OK
 * checking for missing documentation entries ... OK
 * checking for code/documentation mismatches ... OK
@@ -46,4 +47,20 @@ Maintainer: ‘Francisco Balao <fbalao@us.es>’
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
-* checking PDF version of manual ... OK
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+LaTeX errors found:
+! LaTeX Error: File `zi4.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+! Emergency stop.
+<read *> 
+         
+l.271 ^^M
+         
+!  ==> Fatal error occurred, no output PDF file produced!
+* checking PDF version of manual without hyperrefs or index ... OK
+WARNING: There was 1 warning.

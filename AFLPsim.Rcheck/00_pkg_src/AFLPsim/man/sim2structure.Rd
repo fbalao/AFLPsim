@@ -24,7 +24,7 @@ Pritchard, J.K., M. Stephens,  P. Donnelly. 2000. Inference of population struct
 }
 \examples{
 ## simulate F1 hybrids
-F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+F1hybrids<-hybridsim(Nmarker=30,Na=30,Nb=100,Nf1=30, type="neutral", hybrid="F1")
 
 ## convert to STRUCTURE input file
 sim2structure(F1hybrids,filename="F1hybrids_Structure.txt")

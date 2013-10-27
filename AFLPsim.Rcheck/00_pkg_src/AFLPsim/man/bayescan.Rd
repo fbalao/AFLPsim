@@ -8,7 +8,7 @@ This function calls Bayescan program from within R to identifying candidate loci
 \usage{
 bayescan(mat, filename, nbp = 20, pilot = 5000, burn = 50000, exec=NULL)}
 \arguments{
-  \item{mat}{A matrix with genotypic data to test}
+  \item{mat}{A matrix with genotypic data to test in hybridsim format}
   \item{filename}{a character string giving the name of the output file (without extension)}
   \item{nbp}{Number of pilot runs (default is 2)}
   \item{pilot}{Length of pilot runs (default is 50)}

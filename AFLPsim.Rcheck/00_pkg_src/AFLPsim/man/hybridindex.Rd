@@ -17,14 +17,14 @@ Buerkle C. A. (2005) Maximum-likelihood estimation of a hybrid index based on mo
 
 Gompert Z. and Buerkle C. A. (2010) introgress: a software package for mapping components of isolation in hybrids. \emph{Molecular Ecology Resources},\bold{10}, 378-384
 }
-\author{F. Balao \email{fbalao@us.es}; J.L. García-Castaño 
+\author{F. Balao \email{fbalao@us.es}; J.L. Garc?a-Casta?o 
 }
 \seealso{
 \code{\link[introgress]{est.h}}
 }
 \examples{
 ## simulate parentals and F1 hybrids
-hybrids<-hybridsim(Nmarker=100, Na=100, Nb=100, Nf1=10, type="neutral", hybrid="F1")
+hybrids<-hybridsim(Nmarker=50, Na=10, Nb=10, Nf1=10, type="neutral", hybrid="F1")
 
 ## estimate hybrid index
 hest<-hybridindex(hybrids)

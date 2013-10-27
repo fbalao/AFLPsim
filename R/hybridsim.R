@@ -13,8 +13,7 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     Nsel=Nmarker
     S=0
   }
-  S=10^S
-  #Crea matriz de individuos con todo 1
+   #Crea matriz de individuos con todo 1
   pa<-matrix( 1,1000,Nmarker)
   #Crea la matriz con alelos siguiendo la probabilida de la beta
   p1<-rbeta(Nmarker,apa,apa)

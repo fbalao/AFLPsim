@@ -1,5 +1,5 @@
 
-R version 3.0.1 (2013-05-16) -- "Good Sport"
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
 Copyright (C) 2013 The R Foundation for Statistical Computing
 Platform: i686-pc-linux-gnu (32-bit)
 
@@ -20,6 +20,18 @@ Type 'q()' to quit R.
 > pkgname <- "AFLPsim"
 > source(file.path(R.home("share"), "R", "examples-header.R"))
 > options(warn = 1)
+> base::assign(".ExTimings", "AFLPsim-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
 > library('AFLPsim')
 
 NOTE: THIS PACKAGE IS NOW OBSOLETE.
@@ -36,6 +48,7 @@ NOTE: THIS PACKAGE IS NOW OBSOLETE.
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: bayescan
 > ### Title: Identifying candidate loci under natural selection with external
 > ###   application
@@ -54,12 +67,15 @@ NULL
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("bayescan", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("demosimhybrid")
 > ### * demosimhybrid
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: demosimhybrid
 > ### Title: Demographic model of introgressive hybridization
 > ### Aliases: demosimhybrid
@@ -105,12 +121,15 @@ attr(,"class")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("demosimhybrid", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("gscan")
 > ### * gscan
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: gscan
 > ### Title: Genome scan for hybrids
 > ### Aliases: gscan
@@ -123,33 +142,34 @@ attr(,"class")
 > outliers<-gscan(hybrids, type="F1", method="bal&gar-ca")
 [1] 0.8312
 [1] 0.1458
-[1] 0.04338
+[1] 0.5724
 [1] 1
-[1] 1.18e-12
-[1] 4.483e-09
-[1] 0.1074
+[1] 0.000272
+[1] 0.002864
 [1] 1
 [1] 0.5849
-[1] 0.0002131
-[1] 4.88e-18
-[1] 1
-[1] 0.0002102
-[1] 3.589e-11
-[1] 0.0007024
+[1] 0.0189
+[1] 0.2161
+[1] 0.145
+[1] 1.36e-09
+[1] 0.279
 [1] 0.0002134
 [1] 1
-[1] 4.446e-16
-[1] 2.579e-06
-[1] 0.1668
+[1] 0.07378
+[1] 0.007494
+[1] 1
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("gscan", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("hybridindex")
 > ### * hybridindex
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: hybridindex
 > ### Title: Estimate hybrid index por 'hybridsim' objects
 > ### Aliases: hybridindex
@@ -158,22 +178,25 @@ attr(,"class")
 > ### ** Examples
 > 
 > ## simulate parentals and F1 hybrids
-> hybrids<-hybridsim(Nmarker=100, Na=100, Nb=100, Nf1=10, type="neutral", hybrid="F1")
+> hybrids<-hybridsim(Nmarker=50, Na=10, Nb=10, Nf1=10, type="neutral", hybrid="F1")
 ########Neutral hybridization########> 
 > ## estimate hybrid index
 > hest<-hybridindex(hybrids)
 prepare.data is working; this may take a moment
-Processing data for 10 individuals and 100 loci.
+Processing data for 10 individuals and 50 loci.
 est.h is working; this may take a few minutes
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("hybridindex", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("hybridize")
 > ### * hybridize
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: hybridize
 > ### Title: AFLP simulator with selection from parental data
 > ### Aliases: hybridize
@@ -193,12 +216,15 @@ est.h is working; this may take a few minutes
 ########Neutral hybridization########> 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("hybridize", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("hybridsim")
 > ### * hybridsim
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: hybridsim
 > ### Title: AFLP simulator with selection
 > ### Aliases: hybridsim
@@ -210,12 +236,15 @@ est.h is working; this may take a few minutes
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("hybridsim", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("plot.demosimhybrid")
 > ### * plot.demosimhybrid
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: plot.demosimhybrid
 > ### Title: Plotting 'demosimhybrid' objects
 > ### Aliases: plot.demosimhybrid
@@ -261,12 +290,15 @@ attr(,"class")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot.demosimhybrid", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("plot.hybridsim")
 > ### * plot.hybridsim
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: plot.hybridsim
 > ### Title: Plotting hybridsim objects
 > ### Aliases: plot.hybridsim
@@ -281,12 +313,15 @@ attr(,"class")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot.hybridsim", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2arlequin")
 > ### * sim2arlequin
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2arlequin
 > ### Title: Converting hybridsim object to a Arlequin input file
 > ### Aliases: sim2arlequin
@@ -302,12 +337,15 @@ attr(,"class")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2arlequin", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2bayescan")
 > ### * sim2bayescan
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2bayescan
 > ### Title: Converting hybridsim object to a Bayescan input file
 > ### Aliases: sim2bayescan
@@ -323,12 +361,15 @@ attr(,"class")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2bayescan", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2genind")
 > ### * sim2genind
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2genind
 > ### Title: Converting a hybridsim object to a genind object
 > ### Aliases: sim2genind
@@ -346,12 +387,15 @@ Warning in df2genind(X, pop = pop, missing = NA, ploidy = 2, type = "PA") :
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2genind", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2introgress")
 > ### * sim2introgress
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2introgress
 > ### Title: Converting hybridsim object to introgress
 > ### Aliases: sim2introgress
@@ -367,12 +411,15 @@ Warning in df2genind(X, pop = pop, missing = NA, ploidy = 2, type = "PA") :
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2introgress", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2newhybrids")
 > ### * sim2newhybrids
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2newhybrids
 > ### Title: Converting hybridsim object to a NewHybrids input file
 > ### Aliases: sim2newhybrids
@@ -381,19 +428,22 @@ Warning in df2genind(X, pop = pop, missing = NA, ploidy = 2, type = "PA") :
 > ### ** Examples
 > 
 > ## simulate hybrids
-> hybrids<-hybridsim(Nmarker=500,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="all")
+> hybrids<-hybridsim(Nmarker=100,Na=30,Nb=30,Nf1=30, type="neutral", hybrid="all")
 ########Neutral hybridization########> 
 > ## convert to NewHybrids input file
 > sim2newhybrids(hybrids,filename="newhybridsinput.txt")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2newhybrids", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2popgene")
 > ### * sim2popgene
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2popgene
 > ### Title: Converting hybridsim object to a PopGene input file
 > ### Aliases: sim2popgene
@@ -409,12 +459,15 @@ Warning in df2genind(X, pop = pop, missing = NA, ploidy = 2, type = "PA") :
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2popgene", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > cleanEx()
 > nameEx("sim2structure")
 > ### * sim2structure
 > 
 > flush(stderr()); flush(stdout())
 > 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: sim2structure
 > ### Title: Convert a hybridsim object to a STRUCTURE input file
 > ### Aliases: sim2structure
@@ -423,18 +476,20 @@ Warning in df2genind(X, pop = pop, missing = NA, ploidy = 2, type = "PA") :
 > ### ** Examples
 > 
 > ## simulate F1 hybrids
-> F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+> F1hybrids<-hybridsim(Nmarker=30,Na=30,Nb=100,Nf1=30, type="neutral", hybrid="F1")
 ########Neutral hybridization########> 
 > ## convert to STRUCTURE input file
 > sim2structure(F1hybrids,filename="F1hybrids_Structure.txt")
 > 
 > 
 > 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("sim2structure", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 > ### * <FOOTER>
 > ###
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  23.949 1.08 25.062 0 0 
+Time elapsed:  11.696 1.056 20.969 0 0 
 > grDevices::dev.off()
 null device 
           1 

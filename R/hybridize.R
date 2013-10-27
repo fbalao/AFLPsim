@@ -14,7 +14,6 @@ function(pa,pb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Ns
     Nsel=Nmarker
     S=0
   }
-   S=10^S  
    markers<-paste("M",seq(1,Nmarker,1),sep="")
    PA<-paste("PA",seq(1,nrow(pa),1),sep="")
    PB<-paste("PB",seq(1,nrow(pb),1),sep="")

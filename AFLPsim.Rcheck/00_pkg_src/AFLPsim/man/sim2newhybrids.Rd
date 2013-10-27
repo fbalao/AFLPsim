@@ -18,7 +18,7 @@ Anderson, E.C. 2008. Bayesian inference of species hybrids using multilocus domi
 Anderson, E.C., & E.A. Thompson. 2002. A model-based method for identifying species hybrids using multilocus genetic data. \emph{Genetics} \bold{160}: 1217-1229.
 }
 
-\author{F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\author{F. Balao \email{fbalao@us.es}, J.L. Garc?a-Casta?o 
 }
 
 \seealso{
@@ -30,7 +30,7 @@ Anderson, E.C., & E.A. Thompson. 2002. A model-based method for identifying spec
 }
 \examples{
 ## simulate hybrids
-hybrids<-hybridsim(Nmarker=500,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="all")
+hybrids<-hybridsim(Nmarker=100,Na=30,Nb=30,Nf1=30, type="neutral", hybrid="all")
 
 ## convert to NewHybrids input file
 sim2newhybrids(hybrids,filename="newhybridsinput.txt")

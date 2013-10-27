@@ -88,7 +88,7 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 ## simulate parentals and F1 hybrids
-hybrids<-hybridsim(Nmarker=100, Na=100, Nb=100, Nf1=10, type="neutral", hybrid="F1")
+hybrids<-hybridsim(Nmarker=50, Na=10, Nb=10, Nf1=10, type="neutral", hybrid="F1")
 
 ## estimate hybrid index
 hest<-hybridindex(hybrids)
@@ -285,7 +285,7 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 ## simulate hybrids
-hybrids<-hybridsim(Nmarker=500,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="all")
+hybrids<-hybridsim(Nmarker=100,Na=30,Nb=30,Nf1=30, type="neutral", hybrid="all")
 
 ## convert to NewHybrids input file
 sim2newhybrids(hybrids,filename="newhybridsinput.txt")
@@ -327,7 +327,7 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 ## simulate F1 hybrids
-F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+F1hybrids<-hybridsim(Nmarker=30,Na=30,Nb=100,Nf1=30, type="neutral", hybrid="F1")
 
 ## convert to STRUCTURE input file
 sim2structure(F1hybrids,filename="F1hybrids_Structure.txt")
