@@ -1,0 +1,921 @@
+\nonstopmode{}
+\documentclass[letterpaper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8,latin1]{inputenc}
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `AFLPsim'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\inputencoding{latin1}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Hybrid simulation and genome scan for dominant markers}
+\item[Version]\AsIs{0.2-1}
+\item[Encoding]\AsIs{latin1}
+\item[Date]\AsIs{2013-10-27}
+\item[Author]\AsIs{Francisco  Balao and Juan Luis Garc�a-Casta�o}
+\item[Maintainer]\AsIs{Francisco Balao }\email{fbalao@us.es}\AsIs{}
+\item[Depends]\AsIs{R (>= 2.15.0)}
+\item[Imports]\AsIs{adegenet, introgress}
+\item[SystemRequirements]\AsIs{Bayescan 2.1. See README.}
+\item[Description]\AsIs{This package is developed in the Plant Reproductive Biology Lab (RNM-214) - University of Seville. It contains hybrid simulation functions for dominant genetic data. It also provides several genome scan methods.}
+\item[License]\AsIs{GPL (>= 2)}
+\item[URL]\AsIs{}\url{http://www.r-project.org,}\AsIs{
+}\url{http://personal.us.es/fbalao/software.html}\AsIs{}
+\item[LazyData]\AsIs{true}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{AFLPsim-package}{Hybrid simulation and genome scan for dominant markers}{AFLPsim.Rdash.package}
+\keyword{package}{AFLPsim-package}
+%
+\begin{Description}\relax
+This package is developed in the Plant Reproductive Biology Lab (RNM-214) - University of Seville. It contains hybrid simulation functions for dominant genetic data. It also provides several genome scan methods. 
+
+More information on AFLPsim can be found at \url{https://github.com/fbalao/AFLPsim}.
+
+To cite AFLPsim, please use citation("AFLPsim")
+\end{Description}
+%
+\begin{Details}\relax
+
+\Tabular{ll}{
+Package: & AFLPsim\\{}
+Type: & Package\\{}
+Version: & 0.2-1\\{}
+Date: & 2013-10-27\\{}
+License: & GPL (>= 2)\\{}
+}
+\end{Details}
+%
+\begin{Author}\relax
+Francisco Balao; Juan Luis Garc?a-Casta?o
+\end{Author}
+\inputencoding{utf8}
+\HeaderA{bayescan}{Identifying candidate loci under natural selection with external application}{bayescan}
+\keyword{outlier}{bayescan}
+\keyword{hybridization}{bayescan}
+\keyword{genome scan}{bayescan}
+%
+\begin{Description}\relax
+This function calls Bayescan program from within R to identifying candidate loci under natural selection from genetic data.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+bayescan(mat, filename, nbp = 20, pilot = 5000, burn = 50000, exec=NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{mat}] A matrix with genotypic data to test in hybridsim format
+\item[\code{filename}] a character string giving the name of the output file (without extension)
+\item[\code{nbp}] Number of pilot runs (default is 2)
+\item[\code{pilot}] Length of pilot runs (default is 50)
+\item[\code{burn}] Burnin length (default is 5000)
+\item[\code{exec}] a character string giving the path to BAYESCAN. By default it tries to guess it depending on the operating system (see details).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+\code{bayescan} tries to guess the name of the executable program depending on the operating system. Specifically, the followings are used: "bayescan\_2.1" under Linux and Mac, or "C:/Program Files/BayeScan2.1/binaries/BayeScan2.1\_win32bits\_cmd\_line.exe" under Windows.
+\end{Details}
+%
+\begin{Value}
+Several files with the results and a data.frame with the following variables:
+\begin{ldescription}
+\item[\code{prob}] The posterior probability for the model including selection
+\item[\code{log10.PO.}] The logarithm of Posterior Odds to base 10
+\item[\code{qval}] q-values for each locus for the model including selection
+\item[\code{alpha}] The estimated alpha coefficient indicating the strength and direction of selection. See Bayescan 2.1 manual
+\item[\code{fst}] The Fst coefficient averaged over populations
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es},  J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Foll, M. \& O. Gaggiotti. 2008. A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective. \emph{Genetics} \bold{180}: 977-993. 
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{gscan}{gscan}}
+\code{\LinkA{sim2bayescan}{sim2bayescan}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run
+hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", Nsel=25, hybrid="F1", S=100)
+outbayes<-bayescan(hybrids, filename="bayescanresults", nbp=10, pilot=50, burn=100)
+outbayes
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{demosimhybrid}{Demographic model of introgressive hybridization }{demosimhybrid}
+\keyword{hybridization}{demosimhybrid}
+\keyword{simulation}{demosimhybrid}
+%
+\begin{Description}\relax
+This model simulates the proportions of parentals,
+F1, F2, Fx and backcross (on both sides) individuals for each generation and takes into account the initial frequencies of parentals, the assortative mating among taxa as well as fitness differences.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+demosimhybrid(x,M,F)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+
+\item[\code{x}] A vector indicating the initial abundances in the population.The vector should sum 1. The order of abundances is: ParentalA, ParentalB, F1, BxA, BxB and Fx
+\item[\code{M}] Matrix assortative mating.The size is 6x6 following the same order tan vector x. By default random mating (all = 1)
+
+\item[\code{F}] A vector indicating the diferent fecundities of the parentals and hybrids. The vector size is 6 following the same order tan vector x. By default equal fecundities (all = 1)
+
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+This function simulate the model of introgresive hibridization of Epifanio and Philipp (2000)
+\end{Details}
+%
+\begin{Value}
+ a object \code{demosimhybrid}. An matrix of abundances in each generation
+\end{Value}
+%
+\begin{Author}\relax
+Francisco Balao \email{fbalao@us.es}; Marcial Escudero; J.L. García-Castaño
+\end{Author}
+%
+\begin{References}\relax
+Epifanio, J. \& D. Philipp. 2000. Simulating the extinction of parental lineages from introgressive hybridization: the effects of fitness, initial proportions of parental taxa, and mate choice. \emph{Reviews in Fish Biology and Fisheries} \bold{10}: 339-354. 
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{hybridsim}{hybridsim}}
+
+\code{\LinkA{plot.demosimhybrid}{plot.demosimhybrid}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+
+## Example 1. Simulation under parental proportions,
+## similar fecundities and random mating 
+inivalues<-c(0.5,0.5,0,0,0,0)
+epi0.5<-demosimhybrid(inivalues)
+epi0.5
+
+
+## Example 2. Simulation under higher frecuency of parental B,
+## and higher fecundy of parental A and random mating
+inivalues2<-c(0.25,0.75,0,0,0,0)
+fecundities<-c(1,0.5,0.5,0.5,0.5,0.5)
+epi0.75<-demosimhybrid(x=inivalues, F=fecundities)
+epi0.75
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{gscan}{Genome scan for hybrids}{gscan}
+\keyword{outlier}{gscan}
+\keyword{hybridization}{gscan}
+\keyword{genome scan}{gscan}
+%
+\begin{Description}\relax
+This function fits genomic scan to dominant genotypic data using the method described by \Cite{Gagnaire et al (2009)} and the new method by Balao et al (2013; \emph{in preparation}). Significance testing for outlier loci is included.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+gscan(mat, type=c("F1","BxA","BxB"), method=c("bal&gar-ca","gagnaire"))
+
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{mat}] 
+an object of class '\code{hybridsim}' produced by '\code{\LinkA{hybridsim}{hybridsim}}' or '\code{\LinkA{hybridize}{hybridize}}' functions
+
+\item[\code{type}] 
+the type of hybrid classes; either "F1", "BxA" or "BxB"
+
+\item[\code{method}] 
+a character string specifying the method to test significance of outlier loci; either "gagnaire" or "bal\&gar-ca". See Details. 
+
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+These genome scan methods calculate the null distribution of frequencies under a neutral model.
+
+Gagnaire's method uses a binomial test to outlier significance. For more conservative and unbiased method,   "Bal\&gar-car" method calculates the 95\% confidence expected hybrid frequencies by the Clopper-Pearson 'exact' procedure (Clopper \& Pearson 1934; Brown et al. 2001).  
+
+In both methods, the False Discovery Rate (FDR) correction (Benjamini \& Hochberg 1995) is used to counteract for multiple comparisons and control the expected proportion of incorrectly rejected null hypotheses.
+\end{Details}
+%
+\begin{Value}
+A list with the following components:
+\begin{ldescription}
+\item[\code{P-values }] a matrix with P values after False Discovery Rate correction for each loci
+\item[\code{Outlier }] a vector with outliers
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Balao, F., Casimiro-Soriguer, R., García-Castaño, J.L., Terrab, A., Talavera, S. 2013. Big thistle eats the little thistle: Non-neutral unidirectional introgression endangers the conservation of \emph{Onopordum hinojense}. \emph{Molecular Ecology}, \emph{in preparation}.
+
+Benjamini, Y., and Y. Hochberg. 1995. Controlling the false discovery rate: a practical and powerful approach to multiple testing. \emph{Journal of the Royal Statistical Society. Series B} \bold{57}: 289-300.
+
+Brown LD, Cai TT, Anirban D (2001) Interval estimation for a binomial proportion. \emph{Statistical Science} \bold{16}: 101-117.
+
+Clopper CJ, Pearson ES (1934) The use of confidence or fiducial limits illustrated in the case of the binomial. \emph{Biometrika} \bold{26}: 404-413
+
+Gagnaire, P.A., V. Albert, B. Jonsson, L. Bernatchez. 2009. Natural selection influences AFLP intraspecific genetic variability and introgression patterns in Atlantic eels. \emph{Molecular Ecology} \bold{18}: 1678-1691.
+
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{hybridsim}{hybridsim}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", S=5,Nsel=25, hybrid="F1")
+
+outliers<-gscan(hybrids, type="F1", method="bal&gar-ca")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{hybridindex}{Estimate hybrid index por \code{hybridsim} objects}{hybridindex}
+\keyword{hybridization}{hybridindex}
+%
+\begin{Description}\relax
+This function finds maximum likelihood estimates of hybrid index as described by \Cite{Buerkle (2005)} using the packages \pkg{introgress}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+hybridindex(data)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] an \code{\LinkA{hybridsim}{hybridsim}} object with the profiles of parentals and hybrids.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+\code{hybridindex} returns a hybrid index estimate with its 95\% confidence interval. See \code{\LinkA{est.h}{est.h}} and \Cite{Buerkle (2005)} for additional details.
+\end{Details}
+%
+\begin{Value}
+A data frame with estimates of hybrid index and upper and lower limits of its 95\% confidence intervals, which falls within two support units of the maximum-likelihood estimate:
+\begin{ldescription}
+\item[\code{lower}] 95\% confidence interval lower limit.
+\item[\code{h}] Maximum-likelihood estimate of the hybrid index.
+\item[\code{upper}] 95\% confidence interval upper limit.
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}; J.L. Garc?a-Casta?o 
+\end{Author}
+%
+\begin{References}\relax
+Buerkle C. A. (2005) Maximum-likelihood estimation of a hybrid index based on molecular markers. \emph{Molecular Ecology Notes}, \bold{5}: 684-687.
+
+Gompert Z. and Buerkle C. A. (2010) introgress: a software package for mapping components of isolation in hybrids. \emph{Molecular Ecology Resources},\bold{10}, 378-384
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{est.h}{est.h}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate parentals and F1 hybrids
+hybrids<-hybridsim(Nmarker=50, Na=10, Nb=10, Nf1=10, type="neutral", hybrid="F1")
+
+## estimate hybrid index
+hest<-hybridindex(hybrids)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{hybridize}{AFLP simulator with selection from parental data}{hybridize}
+\keyword{hybridization}{hybridize}
+\keyword{simulation}{hybridize}
+%
+\begin{Description}\relax
+This function simulates AFLP profiles (or other dominant markers) of several hybrid classes (F1 and backcrosses on both parentals) from two parental populations. In addition, selection on several markers can be simulated for the hybrid progeny.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+hybridize(pa,pb,Nf1, Nbxa = Nf1, Nbxb = Nf1, Nf2 = Nf1, type = "selection",
+ hybrid = "all", Nsel = Nmarker * 0.1, S = 0)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+
+\item[\code{pa}] AFLP profile of Parental A. A data.frame or matrix.
+\item[\code{pb}] AFLP profile of Parental B. A data.frame or matrix.
+\item[\code{Nf1}] number of AFLP profiles for F1.
+\item[\code{Nbxa}] number of AFLP profiles for BxA.
+\item[\code{Nbxb}] number of AFLP profiles for BxA.
+\item[\code{Nf2}] number of AFLP profiles for F2.
+\item[\code{type}] type of simulation: \code{'neutral'} or \code{'selection'}.
+\item[\code{hybrid}] hybrid classes to simulate. By default \code{'all'}. Also \code{'F1'}, \code{'BxA'}, \code{'BxB'} or \code{'F2'}.
+
+\item[\code{Nsel}] number of loci under selection.
+\item[\code{S}] Selection coefficient (see Details)
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+simulates F1, F2, Backcross to Parental A (BxA) and Backcross to Parental B (BxB) with and without selection. Parental profiles must be included (individuals in rows and markers in columns). The selection coefficient S is a integer value from -10 to 10 (i.e. it can include negative, neutral or  positive selection).
+\end{Details}
+%
+\begin{Value}
+Object \code{\LinkA{hybridsim}{hybridsim}} with:
+\begin{ldescription}
+\item[\code{PA }] Parental A AFLP profile
+\item[\code{PB }] Parental B AFLP profile
+\item[\code{F1}] F1 hybrid AFLP profile
+\item[\code{F2}] F2 hybrid AFLP profile
+\item[\code{BxA}] Backcross to Parental A AFLP profile 
+\item[\code{BxB}] Backcross to Parental B AFLP profile 
+\item[\code{Nsel}] Loci under selection (default, under neutral selection)
+\item[\code{S}] Selection coefficient
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Wright, S. 1931. Evolution in Mendelian populations. \emph{Genetics} \bold{16}: 97-159. 
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{hybridsim}{hybridsim}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## AFLP profile Species A
+SpeciesA<-read.table(system.file("/files/SpeciesA.txt",package="AFLPsim"),header=TRUE, row.names=1)
+
+
+## AFLP profile Species B
+SpeciesB<-read.table(system.file("/files/SpeciesB.txt",package="AFLPsim"),header=TRUE, row.names=1)
+
+## simulate F1 hybrids
+F1hybrids<-hybridize(pa=SpeciesA,pb=SpeciesB, Nf1=30, type="neutral", hybrid="F1")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{hybridsim}{AFLP simulator with selection}{hybridsim}
+\keyword{hybridization}{hybridsim}
+\keyword{simulation}{hybridsim}
+%
+\begin{Description}\relax
+This function simulates AFLP profiles (or other dominant markers) of parentals and several hybrid classes (F1 and backcrosses on both parentals). In addition, selection on several markers can be simulated for the hybrid progeny.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+hybridsim(Nmarker, Na, Nb, Nf1, Nbxa = Nf1, Nbxb = Nf1, Nf2 = Nf1,
+ type = "selection", hybrid = "all", Nsel = Nmarker * 0.1, S = 0, apa = 0.5, apb = 0.5)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{Nmarker}] The number of AFLP loci to simulate.
+\item[\code{Na}] number of AFLP profiles for Parental A.
+\item[\code{Nb}] number of AFLP profiles for Parental B.
+\item[\code{Nf1}] number of AFLP profiles for F1.
+\item[\code{Nbxa}] number of AFLP profiles for BxA.
+\item[\code{Nbxb}] number of AFLP profiles for BxB.
+\item[\code{Nf2}] number of AFLP profiles for F2.
+\item[\code{type}] type of simulation: \code{'neutral'} or \code{'selection'}.
+\item[\code{hybrid}] hybrid classes to simulate. By default \code{'all'}. Also \code{'F1'}, \code{'BxA'}, \code{'BxB'} or \code{'F2'}.
+\item[\code{Nsel}] number of loci under selection.
+\item[\code{S}] Selection coefficient (see Details)
+\item[\code{apa}] value for parameter 1 of the beta distribution
+\item[\code{apb}] value for parameter 2 of the beta distribution
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}\relax
+Simulate dominant markers (AFLP, RFLP...). Parental allele frequencies are calculated following a beta distribution (Wright 1931).
+F1, F2, Backcrosses to parental A (BxA) and Backcrosses to parental b (BxB) can be simulated with and without selection. The selection coefficient S is a integer value from -1 to 1 (negative and positive selection).
+\end{Details}
+%
+\begin{Value}
+Object \code{hybridsim}  with:
+\begin{ldescription}
+\item[\code{PA }] AFLP profile parental population A
+\item[\code{PB }] AFLP profile parental population A
+\item[\code{F1}] AFLP profile F1 hybrid population
+\item[\code{F2}] AFLP profile F2 hybrid population
+\item[\code{BxA}] AFLP profile Backcrosses to parental population A
+\item[\code{BxB}] AFLP profile Backcrosses to parental population B
+\item[\code{Nsel}] Loci under selection. NA under neutral selection
+\item[\code{S}] Selection Coefficient
+\end{ldescription}
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Wright, S. 1931. Evolution in Mendelian Populations. \emph{Genetics} \bold{16}: 97-159. 
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{hybridize}{hybridize}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", Nsel=25, hybrid="F1")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{plot.demosimhybrid}{Plotting \code{\LinkA{demosimhybrid}{demosimhybrid}} objects}{plot.demosimhybrid}
+\keyword{hybridization}{plot.demosimhybrid}
+\keyword{simulation}{plot.demosimhybrid}
+%
+\begin{Description}\relax
+A \code{\LinkA{demosimhybrid}{demosimhybrid}} object can be plotted using the function \code{plot.demosimhybrid}, which is also used as the dedicated plot method. This function plots the frequency of parentals and hybrid classes on each generation.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'demosimhybrid'
+plot(x, col = c(2, 3, 4, "orange", "orchid", 7), ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{\LinkA{demosimhybrid}{demosimhybrid}} object.
+\item[\code{col}] the colors for the hybrid classes.
+\item[\code{...}] Arguments to be passed to methods, such as graphical parameters (see \code{par}).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{demosimhybrid}{demosimhybrid}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Example 1. Simulation under parental proportions,
+## similar fecundities and random mating 
+inivalues<-c(0.5,0.5,0,0,0,0)
+epi0.5<-demosimhybrid(inivalues)
+epi0.5
+plot.demosimhybrid(epi0.5)
+
+## Example 2. Simulation under higher frecuency of Parental B,
+## and higher fecundy of Parental A and random mating
+inivalues2<-c(0.25,0.75,0,0,0,0)
+fecundities<-c(1,0.5,0.5,0.5,0.5,0.5)
+epi0.75<-demosimhybrid(x=inivalues, F=fecundities)
+epi0.75
+plot.demosimhybrid(epi0.75)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{plot.hybridsim}{Plotting hybridsim objects}{plot.hybridsim}
+\keyword{hybridization}{plot.hybridsim}
+\keyword{simulation}{plot.hybridsim}
+%
+\begin{Description}\relax
+A \code{hybridsim} object can be plotted using the function \code{plot.hybridsim}, which is also used as the dedicated plot method. This function represents expected hybrid markers frequencies on a neutral sheet.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'hybridsim'
+plot(x,hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
+ shade = 0.8, markers = x$SelMarkers, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A \code{hybridsim} object.
+\item[\code{hybrid}] The hybrid classes to simulate:  \code{"F1"},  \code{"BxA"} or  \code{"BxB"}.
+\item[\code{col}] A specification for the default plotting color.
+\item[\code{shade}] A specification for the default alpha value.
+\item[\code{markers}] a numeric vector with markers to plot. By default markers under selection by \code{\LinkA{hybridsim}{hybridsim}} function.
+\item[\code{...}] Arguments to be passed to methods, such as graphical parameters (see \code{par}).
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{hybridsim}{hybridsim}}
+\code{\LinkA{hybridize}{hybridize}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate parentals and F1 hybrids
+hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", S=1, Nsel=25, hybrid="F1")
+
+plot.hybridsim(hybrids, hybrid="F1")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2arlequin}{Converting hybridsim object to a Arlequin input file}{sim2arlequin}
+\keyword{hybridization}{sim2arlequin}
+\keyword{simulation}{sim2arlequin}
+%
+\begin{Description}\relax
+The function sim2arlequin converts a hybridsim  object into a Arlequin input file. 
+
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2arlequin(x,filename)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+
+\item[\code{x}] 
+a \code{\LinkA{hybridsim}{hybridsim}} object
+
+\item[\code{filename}] 
+a character string indicating the name of the output file
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Arlequin input file
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Excoffier L, Laval G, Schneider S (2005) Arlequin ver. 3.0: An integrated software package for population genetics data analysis. \emph{Evolutionary Bioinformatics Online}, \bold{1}, 47-50.
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{sim2bayescan}{sim2bayescan}}
+\code{\LinkA{sim2introgress}{sim2introgress}}
+\code{\LinkA{sim2newhybrids}{sim2newhybrids}}
+\code{\LinkA{sim2popgene}{sim2popgene}}
+\code{\LinkA{sim2structure}{sim2structure}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate F1 hybrids
+F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+
+## convert to Arlequin input file
+sim2arlequin(F1hybrids,filename="F1hybrids_Arlequin.txt")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2bayescan}{Converting hybridsim object to a Bayescan input file}{sim2bayescan}
+\keyword{hybridization}{sim2bayescan}
+\keyword{simulation}{sim2bayescan}
+%
+\begin{Description}\relax
+The function sim2bayescan converts a hybridsim object into a \code{Bayescan} \Cite{(Foll \& Gaggiotti 2008)} input file. 
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2bayescan(x,filename)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{\LinkA{hybridsim}{hybridsim}} object. Only with F1 hybrids
+\item[\code{filename}] a character string indicating the name of the output file
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{Bayescan} input file
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Foll, M. \& O. Gaggiotti. 2008. A genome-scan method to identify selected loci appropriate for both dominant and codominant markers: a Bayesian perspective. \emph{Genetics} \bold{180}: 977-993. 
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{sim2arlequin}{sim2arlequin}}
+\code{\LinkA{sim2introgress}{sim2introgress}}
+\code{\LinkA{sim2newhybrids}{sim2newhybrids}}
+\code{\LinkA{sim2popgene}{sim2popgene}}
+\code{\LinkA{sim2structure}{sim2structure}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate F1 hybrids
+F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="selection", S=5, Nsel=25, hybrid="F1")
+
+## convert to Bayescan input file
+sim2bayescan(F1hybrids,filename="F1hybrids_Bayescan.txt")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2genind}{Converting a hybridsim object to a genind object}{sim2genind}
+\keyword{hybridization}{sim2genind}
+\keyword{simulation}{sim2genind}
+%
+\begin{Description}\relax
+The function \code{sim2genind} converts a \code{hybridsim} object into a \code{\LinkA{genind}{genind}} object of the package \pkg{adegenet}. It is wrapper of the function  \code{\LinkA{df2genind}{df2genind}}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2genind(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{hybridsim} object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \code{\LinkA{genind}{genind}} object
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{genind}{genind}}
+\code{\LinkA{df2genind}{df2genind}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate F1 hybrids
+F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+
+## convert to genind object
+F1gen<-sim2genind(F1hybrids)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2introgress}{Converting hybridsim object to introgress}{sim2introgress}
+\keyword{hybridization}{sim2introgress}
+\keyword{simulation}{sim2introgress}
+%
+\begin{Description}\relax
+The function sim2introgress converts a hybridsim object into an \code{introgress} input file. It is a wrapper to the function \code{\LinkA{prepare.data}{prepare.data}} of the package \pkg{introgress}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2introgress(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{\LinkA{hybridsim}{hybridsim}} object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a list returned by the function \code{\LinkA{prepare.data}{prepare.data}} of the package \pkg{introgress}
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Gompert, Z. \& C.A. Buerkle. 2010. introgress: a software package for mapping components of isolation in hybrids. \emph{Molecular Ecology Resources} \bold{10}: 378-384.
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{prepare.data}{prepare.data}}
+\code{\LinkA{sim2arlequin}{sim2arlequin}}
+\code{\LinkA{sim2bayescan}{sim2bayescan}}
+\code{\LinkA{sim2newhybrids}{sim2newhybrids}}
+\code{\LinkA{sim2popgene}{sim2popgene}}
+\code{\LinkA{sim2structure}{sim2structure}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate hybrids
+hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="selection", hybrid="all")
+
+## convert to introgress input file
+hybrids2<-sim2introgress(hybrids)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2newhybrids}{Converting hybridsim object to a NewHybrids input file}{sim2newhybrids}
+\keyword{hybridization}{sim2newhybrids}
+\keyword{simulation}{sim2newhybrids}
+%
+\begin{Description}\relax
+The function \code{sim2newhybrids} converts a AFLPsim object into a NewHybrids input file. 
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2newhybrids(x,filename)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{\LinkA{hybridsim}{hybridsim}} object
+\item[\code{filename}] a character string indicating the name of the output file
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a NewHybrids input file
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. Garc?a-Casta?o 
+\end{Author}
+%
+\begin{References}\relax
+Anderson, E.C. 2008. Bayesian inference of species hybrids using multilocus dominant genetic markers. \emph{Philosophical transactions of the Royal Society of London. Series B, Biological Sciences} \bold{363}: 2841-2850. 
+
+Anderson, E.C., \& E.A. Thompson. 2002. A model-based method for identifying species hybrids using multilocus genetic data. \emph{Genetics} \bold{160}: 1217-1229.
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{sim2arlequin}{sim2arlequin}}
+\code{\LinkA{sim2bayescan}{sim2bayescan}}
+\code{\LinkA{sim2introgress}{sim2introgress}}
+\code{\LinkA{sim2popgene}{sim2popgene}}
+\code{\LinkA{sim2structure}{sim2structure}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate hybrids
+hybrids<-hybridsim(Nmarker=100,Na=30,Nb=30,Nf1=30, type="neutral", hybrid="all")
+
+## convert to NewHybrids input file
+sim2newhybrids(hybrids,filename="newhybridsinput.txt")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2popgene}{Converting hybridsim object to a PopGene input file}{sim2popgene}
+\keyword{hybridization}{sim2popgene}
+\keyword{simulation}{sim2popgene}
+%
+\begin{Description}\relax
+The function \code{sim2popgene} converts a hybridsim object into a PopGene input file. 
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2popgene(x,filename)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{\LinkA{hybridsim}{hybridsim}} object
+\item[\code{filename}] a character string indicating the name of the output file
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a PopGene input file
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Yeh, F.C., R.C. Yang, T.B.J. Boyle, Z.H. Ye \& J.X. Mao (1997) Popgene, the User-Friendly Sharewarefor Population Genetic Analysis. Molecular Biology and Biotechnology Centre, University of Alberta, Canada (program available from: \url{http://www.ualberta.ca/~fyeh/}).
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{sim2arlequin}{sim2arlequin}}
+\code{\LinkA{sim2bayescan}{sim2bayescan}}
+\code{\LinkA{sim2introgress}{sim2introgress}}
+\code{\LinkA{sim2newhybrids}{sim2newhybrids}}
+\code{\LinkA{sim2structure}{sim2structure}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate F1 hybrids
+F1hybrids<-hybridsim(Nmarker=100,Na=100,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+
+## convert to genepop input file
+sim2popgene(F1hybrids,filename="F1hybrids_Popgene.txt")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sim2structure}{Convert a hybridsim object to a STRUCTURE input file}{sim2structure}
+\keyword{hybridization}{sim2structure}
+\keyword{simulation}{sim2structure}
+%
+\begin{Description}\relax
+The function \code{sim2structure} converts a hybridsim object into a Structure 2.3 input file.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sim2structure(x,filename)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{\LinkA{hybridsim}{hybridsim}} object
+\item[\code{filename}] a character string indicating the name of the output file
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a Structure input file
+\end{Value}
+%
+\begin{Author}\relax
+F. Balao \email{fbalao@us.es}, J.L. García-Castaño 
+\end{Author}
+%
+\begin{References}\relax
+Falush, D., M. Stephens, J.K. Pritchard. 2007. Inference of population structure using multilocus genotype data: dominant markers and null alleles.\emph{Molecular Ecology Notes} \bold{7}: 574-578. 
+
+Pritchard, J.K., M. Stephens,  P. Donnelly. 2000. Inference of population structure using multilocus genotype data. \emph{Genetics} \bold{155}: 945-959.
+\end{References}
+%
+\begin{SeeAlso}\relax
+\code{\LinkA{sim2arlequin}{sim2arlequin}}
+\code{\LinkA{sim2bayescan}{sim2bayescan}}
+\code{\LinkA{sim2introgress}{sim2introgress}}
+\code{\LinkA{sim2newhybrids}{sim2newhybrids}}
+\code{\LinkA{sim2popgene}{sim2popgene}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## simulate F1 hybrids
+F1hybrids<-hybridsim(Nmarker=30,Na=30,Nb=100,Nf1=30, type="neutral", hybrid="F1")
+
+## convert to STRUCTURE input file
+sim2structure(F1hybrids,filename="F1hybrids_Structure.txt")
+\end{ExampleCode}
+\end{Examples}
+\printindex{}
+\end{document}
