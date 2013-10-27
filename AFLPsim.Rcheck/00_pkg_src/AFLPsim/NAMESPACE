@@ -1,7 +1,0 @@
-exportPattern("^[[:alpha:]]+")
-import(adegenet)
-import(introgress)
-exportClasses(hybridsim,
-demosimhybrid)
-exportMethods(plot)
-
