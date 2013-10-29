@@ -16,8 +16,8 @@ To cite AFLPsim, please use citation("AFLPsim")
 \tabular{ll}{
 Package: \tab AFLPsim\cr
 Type: \tab Package\cr
-Version: \tab 0.2-1\cr
-Date: \tab 2013-10-27\cr
+Version: \tab 0.2-2\cr
+Date: \tab 2013-10-29\cr
 License: \tab GPL (>= 2)\cr
 }
 }

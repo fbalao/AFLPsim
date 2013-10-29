@@ -1,11 +1,10 @@
 Package: AFLPsim
 Type: Package
 Title: Hybrid simulation and genome scan for dominant markers
-Version: 0.2-1
+Version: 0.2-2
 Encoding: latin1
-Date: 2013-10-27
+Date: 2013-10-29
 Authors@R: c(person("Francisco", "Balao", role = c("aut", "cre"),email = "fbalao@us.es"),person("Juan Luis", "García-Castaño", role = "aut",email = "jlgc@us.es"))
-Author: Francisco  Balao and Juan Luis García-Castaño
 Maintainer: Francisco Balao <fbalao@us.es>
 Depends: R (>= 2.15.0)
 Imports: adegenet, introgress

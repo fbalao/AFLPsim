@@ -2,12 +2,14 @@ plot.hybridsim <-
 function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen", 
     shade = 0.8, markers = x$SelMarkers,...) 
 {
-    pa <- apply(x$PA, 2, mean)
-    pb <- apply(x$PB, 2, mean)
-    pf1 <- apply(x$F1, 2, mean)
+    pa <- colMeans(x$PA)
+    pb <- colMeans(x$PB)
+    pf1 <- colMeans(x$F1)
     Na <- dim(x$PA)[1]
     Nb <- dim(x$PB)[1]
     Nf1 <- dim(x$F1)[1]
+    BxB<-x$BxB
+    BxA<-x$BxA
     Nbxa <- dim(x$BxA)[1]
     Nbxb <- dim(x$BxB)[1]
     i <- markers
@@ -32,10 +34,11 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
         segments(from$x, from$y, to$x, to$y, col = 2, lwd = 2.5)
     }
     if (hybrid == "BxB") {
-        if (is.null(x$BxB) == TRUE) 
+        if (is.na(BxB[1]) == TRUE) 
             stop("You need backcross individuals")
-        else pbxb <- apply(x$BxB, 2, mean)
-        modelbcb <- function(x, y) {
+            else 
+            pbxb<- colMeans(BxB)
+            modelbcb <- function(x, y) {
             a <- 1 - sqrt(1 - x)
             b <- 1 - sqrt(1 - y)
             0.5 * ((3 * b) + a - (b^2) - (a * b))
@@ -52,10 +55,11 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
         segments(from$x, from$y, to$x, to$y, col = 2, lwd = 2.5)
     }
     if (hybrid == "BxA") {
-        if (is.null(x$BxA) == TRUE) 
+        if (is.na(BxA[1]) == TRUE) 
             stop("You need backcross individuals")
-        else pbxa <- apply(x$BxA, 2, mean)
-        modelbca <- function(x, y) {
+        else
+            pbxa<- colMeans(BxA)
+            modelbca <- function(x, y) {
             a <- 1 - sqrt(1 - x)
             b <- 1 - sqrt(1 - y)
             0.5 * ((3 * a) + b - (a^2) - (a * b))
