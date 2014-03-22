@@ -6,7 +6,7 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
     pb <- colMeans(x$PB)
     Na <- dim(x$PA)[1]
     Nb <- dim(x$PB)[1]
-    F1<-x$F1
+    F1<-x[["F1"]]
     BxB<-x$BxB
     BxA<-x$BxA
     i <- markers
@@ -22,7 +22,7 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
       if (is.na(F1[1]) == TRUE) 
         stop("You need F1 individuals")
         else 
-        pf1 <- colMeans(x$F1)
+        pf1 <- colMeans(F1)
         teoricof1 <- model(pa, pb)
         z <- outer(x, y, model)
         resf1 <- persp(x, y, z, thet = -30, phi = 25, ticktype = "detailed", 

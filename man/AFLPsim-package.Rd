@@ -1,6 +1,6 @@
-\encoding{latin1}
 \name{AFLPsim-package}
 \alias{AFLPsim-package}
+\encoding{latin1}
 \docType{package}
 \title{
 Hybrid simulation and genome scan for dominant markers}
@@ -16,12 +16,12 @@ To cite AFLPsim, please use citation("AFLPsim")
 \tabular{ll}{
 Package: \tab AFLPsim\cr
 Type: \tab Package\cr
-Version: \tab 0.2-2\cr
-Date: \tab 2013-10-29\cr
+Version: \tab 0.3-1\cr
+Date: \tab 2013-03-22\cr
 License: \tab GPL (>= 2)\cr
 }
 }
 \author{
-Francisco Balao; Juan Luis \enc{Garc?a-Casta?o}{Garcia-Castano}
+Francisco Balao; Juan Luis Garcia-Castano
 }
 \keyword{package}
