@@ -1,52 +1,40 @@
-hybridsim <-
-function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Nsel=Nmarker*0.1,S=0,apa=0.5,apb=0.5){
+hybridsim <-function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid="all",Nsel=Nmarker*0.1,S=0,apa=0.5,apb=0.5){
   if (Na==0 |Nb==0)
     stop("at least 1 individuals in each parental population")
-  if (Nf1==0)
-    stop("at least 2 F1 hybrids")
-  
   if (Na==0 |Nb==0)
     stop("at least 1 individuals in each parental population")
-  
+    #if (Nf1==0 && any(hybrid=="F1" | hybrid=="all"))
+   # stop("at least 2 F1 hybrids")
   if (type=="neutral"){
     cat("########Neutral hybridization########")
     Nsel=Nmarker
-    S=0
-  }
+    S=0}
    #Crea matriz de individuos con todo 1
   pa<-matrix( 1,1000,Nmarker)
   #Crea la matriz con alelos siguiendo la probabilida de la beta
   p1<-rbeta(Nmarker,apa,apa)
   fa<-p1*(2-p1)
   for (i in 1:Nmarker)
-    pa[,i]<-rbinom(1000,1,fa[i])
+  pa[,i]<-rbinom(1000,1,fa[i])
   pasel<-pa[sample(nrow(pa), Na), ]
-  
-  
-  
   
   pb<-matrix(1,1000,Nmarker)
   p2<-rbeta(Nmarker,apb,apb)
   fb<-p2*(2-p2)
   for (i in 1:Nmarker)
     pb[,i]<-rbinom(1000,1,fb[i])
-  
-  pbsel<-pb[sample(nrow(pb), Nb), ]
+    pbsel<-pb[sample(nrow(pb), Nb), ]
   
   #Creamos los individuos F1 siguiendo un modelo neutral pero queremos seleccionar algunos alelos. Para ello fabricamos un numero grande de progenie y luego recogemos los individuos que tengan los fragmentos outlier donde outlier es un vector de alelos (M1,M2,...)
-  
-  
   #Se calculas las frecuencias de los parentales
-  
   fa1000<-apply(pa,2,mean)
   fb1000<-apply(pb,2,mean)
   pa1000<-1-sqrt(1-fa1000)
   pb1000<-1-sqrt(1-fb1000)
-  
+  #Markers under selection
   sel<-sample(1:Nmarker,Nsel)
   sel<-sort(sel)
-  
-  
+    
   markers<-paste("M",seq(1,Nmarker,1),sep="")
   PA<-paste("PA",seq(1,nrow(pasel),1),sep="")
   PB<-paste("PB",seq(1,nrow(pbsel),1),sep="")
@@ -55,11 +43,9 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
   rownames(pasel)<-PA
   colnames(pbsel)<-markers
   rownames(pbsel)<-PB
-  
   simulation<-list(PA= pasel,PB= pbsel)
   
-  if (any(hybrid == "all" | hybrid=="F1"))
-    {
+  if (any(hybrid == "all" | hybrid=="F1")){
     #El modelo de introgresion neutra
     neutralmodel<-function(x,y){x+y-(x*y)}
     
@@ -101,7 +87,6 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     simulation <- c(simulation, list(F1= f1sel))
   }
   else {simulation <- c(simulation, list(F1= NA))}
-  
   if (any(hybrid == "all" | hybrid=="BxA")){
     
     #El modelo de introgresion neutra
@@ -147,7 +132,6 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     simulation <- c(simulation, list(BxA= bxasel))
     }
   else {simulation <- c(simulation, list(BxA= NA))}
-  
   if (any(hybrid == "all" | hybrid=="BxB")){
     
     #El modelo de introgresion neutra
@@ -161,12 +145,6 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     for (i in 1:Nmarker)
       progeny[,i]<-rbinom(1000,1,fbxb[i])
     
-    # Aqui es donde metemos seleccion. Para ello hay que definir sel 
-    # que es un vector de longitud Nsel que equivale 
-    # al numero de fragmentos a seleccionarse positivamente
-    ## Nsel<=Nmarker
-    sel<-sample(1:Nmarker,Nsel)
-    sel<-sort(sel)
     #Ya tenemos los fragmentos a seleccionar. Ahora vamos a seleccionar los fragmentos sel con una coeficiente de selecci??n S [1-10]
     y2 <-((pb1000^2)-(3*(pb1000))- pa1000 + (pa1000*pb1000) + 2 )/2
     y2[y2==0]<-0.00000000000000000000000000000000001
@@ -209,12 +187,7 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     for (i in 1:Nmarker)
       progeny[,i]<-rbinom(1000,1,f2[i])
     
-    # Aqui es donde metemos seleccion. Para ello hay que definir sel 
-    # que es un vector de longitud Nsel que equivale 
-    # al numero de fragmentos a seleccionarse positivamente
-    ## Nsel<=Nmarker
-    sel<-sample(1:Nmarker,Nsel)
-    sel<-sort(sel)
+
     #Ya tenemos los fragmentos a seleccionar. Ahora vamos a seleccionar los fragmentos sel con una coeficiente de selecci??n S [1-10]
     ######Errrorrr
     y2 <-(1-(((pa1000)+(pb1000))/2))^2
@@ -244,8 +217,6 @@ function(Nmarker,Na,Nb,Nf1,Nbxa=Nf1, Nbxb=Nf1, Nf2=Nf1, type="selection",hybrid=
     simulation<-c(simulation,list(F2=f2sel))
   }
   else {simulation <- c(simulation, list(F2= NA))}  
-  
-  
   if (S==0) {sel= NA}
   simulation<-c(simulation,list(SelMarkers=sel, S = S))
   class(simulation) <- "hybridsim"

@@ -187,7 +187,7 @@ rownames(fdrf1)<- 1:marker
 
 #Crea un vector con los loci outiler (alpha=0.05) tras el ajuste
 sigbx<-as.numeric(rownames(fdrf1)[fdrf1<0.05])
-result<-list(Pvalues=fdrf1,Outliers=sigf1)
+result<-list(Pvalues=fdrf1,Outliers=sigbx)
 return(result)
 }
 if (method=="gagnaire" && type=="BxA"){
@@ -218,8 +218,8 @@ fdrf1<-p.adjust(pvaluebinomf1,method="fdr")
 fdrf1<-as.data.frame(fdrf1)
 rownames(fdrf1)<- 1:marker
 #Crea un vector con los loci outiler (alpha=0.05) tras el ajuste
-sigf1<-as.numeric(rownames(fdrf1)[fdrf1<0.05])
-result<-list(Pvalues=fdrf1,Outliers=sigf1)
+sigbx<-as.numeric(rownames(fdrf1)[fdrf1<0.05])
+result<-list(Pvalues=fdrf1,Outliers=sigbx)
 return(result)
 }
 

@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{NEWS in package 'AFLPsim'}
 \encoding{UTF-8}
+\section{Changes in version 0.3-1}{
+      \itemize{  
+      \item{Fixed bug ( \code{gscan} to run in BxA)}
+      \item{Fixed bug ( \code{hybridsim} in fragment selection for BxB and F2 individuals)}
+      \item{Fixed bug ( \code{plot.hybridsim} plots BxA and BxB hybrids without F1 individuals)}
+      }}
 \section{Changes in version 0.2-2}{
       \itemize{  
       \item{Fixed bug (Wrong behavior of neutral selection simulation in       \code{hybridsim} and \code{hybridize}).}

@@ -4,14 +4,11 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
 {
     pa <- colMeans(x$PA)
     pb <- colMeans(x$PB)
-    pf1 <- colMeans(x$F1)
     Na <- dim(x$PA)[1]
     Nb <- dim(x$PB)[1]
-    Nf1 <- dim(x$F1)[1]
+    F1<-x$F1
     BxB<-x$BxB
     BxA<-x$BxA
-    Nbxa <- dim(x$BxA)[1]
-    Nbxb <- dim(x$BxB)[1]
     i <- markers
     x <- seq(0, 1, 0.05)
     y <- seq(0, 1, 0.05)
@@ -22,6 +19,10 @@ function(x, hybrid = c("F1", "BxA", "BxB"), col = "lightgreen",
     }
     hybrid <- match.arg(hybrid)
     if (hybrid == "F1") {
+      if (is.na(F1[1]) == TRUE) 
+        stop("You need F1 individuals")
+        else 
+        pf1 <- colMeans(x$F1)
         teoricof1 <- model(pa, pb)
         z <- outer(x, y, model)
         resf1 <- persp(x, y, z, thet = -30, phi = 25, ticktype = "detailed", 
