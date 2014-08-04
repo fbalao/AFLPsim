@@ -1,0 +1,14 @@
+citHeader("in process")
+
+citEntry(entry="Article",
+	title = "AFLPsim: an R package for dominant markers simulation, hybridization and genome scan", author = personList(as.person("F. Balao"),as.person("J.L. García-Castaño")),
+	journal = "",
+  	year = "2013",
+	volume = "XXX",
+	pages = "X",
+	number = "X",
+        textVersion =
+        "Balao, F. and García-Castaño, J.L.  AFLPsim: an R package for dominant markers simulation, hybridization and genome scan.  in process"
+         )
+
+

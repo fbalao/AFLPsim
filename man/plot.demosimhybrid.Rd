@@ -27,7 +27,7 @@ plot.demosimhybrid(epi0.5)
 ## and higher fecundy of Parental A and random mating
 inivalues2<-c(0.25,0.75,0,0,0,0)
 fecundities<-c(1,0.5,0.5,0.5,0.5,0.5)
-epi0.75<-demosimhybrid(x=inivalues, F=fecundities)
+epi0.75<-demosimhybrid(x=inivalues2, F=fecundities)
 epi0.75
 plot.demosimhybrid(epi0.75)
 }

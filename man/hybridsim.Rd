@@ -23,7 +23,7 @@
 
 \details{
 Simulate dominant markers (AFLP, RFLP...). Parental allele frequencies are calculated following a beta distribution (Wright 1931).
-F1, F2, Backcrosses to parental A (BxA) and Backcrosses to parental b (BxB) can be simulated with and without selection. The selection coefficient S is a integer value from -1 to 1 (negative and positive selection).
+F1, F2, Backcrosses to parental A (BxA) and Backcrosses to parental b (BxB) can be simulated with and without selection. The selection coefficient S is a integer value from -1 to \eqn{\infty}.This coefficient is 0 when there is no selection (similar to type = "neutral") and it varies following negative and positive directional selection (negative and positive values, respectively).
 }
 \value{Object \code{hybridsim}  with:
 \item{PA }{AFLP profile parental population A}
@@ -45,7 +45,7 @@ F. Balao \email{fbalao@us.es}, J.L. García-Castaño
 \code{\link{hybridize}}
 }
 \examples{
-hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", Nsel=25, hybrid="F1")
+hybrids<-hybridsim(Nmarker=100, Na=30, Nb=30, Nf1=30, type="selection", S=10, Nsel=25, hybrid="F1")
 }
 \keyword{hybridization}
 \keyword{simulation}

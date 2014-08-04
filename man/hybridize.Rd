@@ -24,7 +24,7 @@ hybridize(pa,pb,Nf1, Nbxa = Nf1, Nbxb = Nf1, Nf2 = Nf1, type = "selection",
   \item{S}{Selection coefficient (see Details)}
 }
 \details{
-simulates F1, F2, Backcross to Parental A (BxA) and Backcross to Parental B (BxB) with and without selection. Parental profiles must be included (individuals in rows and markers in columns). The selection coefficient S is a integer value from -10 to 10 (i.e. it can include negative, neutral or  positive selection).
+simulates F1, F2, Backcross to Parental A (BxA) and Backcross to Parental B (BxB) with and without selection. Parental profiles must be included (individuals in rows and markers in columns). he selection coefficient S is a integer value from -1 to \eqn{\infty}.This coefficient is 0 when there is no selection (similar to type = "neutral") and it varies following negative and positive directional selection (negative and positive values, respectively).
 }
 \value{
 Object \code{\link{hybridsim}} with:
