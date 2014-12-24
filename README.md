@@ -3,7 +3,7 @@ AFLPsim
 ![AFLPsim](http://personal.us.es/fbalao/objetos/aflpsmall.jpg)
 
 This R package provides several functions for simulation and analysis of hybridization with dominat markers.
-Manual is provided as a vignette in the package.
+Manual is provided in the  vignette folder.
 
 
 Late update: 2014-24-12
