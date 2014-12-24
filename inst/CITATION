@@ -1,17 +1,11 @@
 citHeader("To cite package 'AFLPsim' in publications use:")
-year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
-vers <- paste("R package version", meta$Version)
-citEntry(entry = "Manual",
-      title = "AFLPsim: Hybrid simulation and genome scan for dominant markers",
-       author = personList(as.person("Francisco  Balao"),
-                               as.person("Juan Luis GarcÃ­a-CastaÃ±o")),
-       year = year,
-       note = vers,
-       url = "https://github.com/fbalao/AFLPsim",
-       key = "AFLPsim-package",
-       textVersion =
-         paste0("Francisco Balao & Juan Luis GarcÃ­a-CastaÃ±o(",
-               year,
-               "). AFLPsim: Hybrid simulation and genome scan for dominant markers.",
-               vers, ".", sep="")
-      )
+citEntry(entry="Article",
+	title = "AFLPsim: an R package for dominant markers simulation, hybridization and genome scan", author = personList(as.person("F. Balao"),as.person("J.L. García-Castaño")),
+	journal = "Plant Methods",
+  	year = "2014",
+	volume = "10",
+	pages = "40",
+        textVersion =
+        "Balao, F. and García-Castaño, J.L.  AFLPsim: an R package to simulate and detect dominant markers under selection in hybridizing populations.  Plant Methods 10:40"
+         )
+

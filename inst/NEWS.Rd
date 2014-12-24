@@ -1,6 +1,11 @@
 \name{NEWS}
 \title{NEWS in package 'AFLPsim'}
-\encoding{UTF-8}
+\encoding{latin1}
+\section{Changes in version 0.3-4}{
+      \itemize{  
+      \item{Small changes in CITATION}
+       \item{Small changes in \code{hybridsim} and \code{hybridize} Documentation}
+      }}
 \section{Changes in version 0.3-3}{
       \itemize{  
       \item{Fixed bug ( \code{gscan} to run in BxA)}

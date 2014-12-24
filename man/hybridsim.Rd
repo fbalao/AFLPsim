@@ -36,6 +36,10 @@ F1, F2, Backcrosses to parental A (BxA) and Backcrosses to parental b (BxB) can 
 \item{S}{Selection Coefficient}
 }
 \references{
+Balao, F. and García-Castaño, J.L.  AFLPsim: an R package to simulate and detect dominant markers under selection in  hybridizing populations.  \emph{Plant Methods} \bold{10}:40
+
+Balao, F., Casimiro-Soriguer, R., García-Castaño, J.L., Terrab, A., Talavera, S. 2013. Big thistle eats the little thistle: Non-neutral unidirectional introgression endangers the conservation of \emph{Onopordum hinojense}. \emph{New Phytologist}, \emph{in press}.
+
 Wright, S. 1931. Evolution in Mendelian Populations. \emph{Genetics} \bold{16}: 97-159. 
 }
 \author{

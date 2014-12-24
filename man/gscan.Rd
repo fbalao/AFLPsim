@@ -34,7 +34,9 @@ A list with the following components:
 \item{Outlier }{a vector with outliers}
 }
 \references{
-Balao, F., Casimiro-Soriguer, R., García-Castaño, J.L., Terrab, A., Talavera, S. 2013. Big thistle eats the little thistle: Non-neutral unidirectional introgression endangers the conservation of \emph{Onopordum hinojense}. \emph{Molecular Ecology}, \emph{in preparation}.
+Balao, F. and García-Castaño, J.L.  AFLPsim: an R package to simulate and detect dominant markers under selection in  hybridizing populations.  \emph{Plant Methods} \bold{10}:40
+
+Balao, F., Casimiro-Soriguer, R., García-Castaño, J.L., Terrab, A., Talavera, S. 2013. Big thistle eats the little thistle: Non-neutral unidirectional introgression endangers the conservation of \emph{Onopordum hinojense}. \emph{New Phytologist}, \emph{in press}.
 
 Benjamini, Y., and Y. Hochberg. 1995. Controlling the false discovery rate: a practical and powerful approach to multiple testing. \emph{Journal of the Royal Statistical Society. Series B} \bold{57}: 289-300.
 

@@ -5,7 +5,7 @@ AFLPsim
 This R package provides several functions for simulation and analysis of hybridization with dominat markers.
 
 
-Late update: 2014-08-04
+Late update: 2014-24-12
 
 Contact
 
@@ -18,7 +18,7 @@ Francisco Balao
 
 To install this package from the source code available here, download it, and set your Working Directory to wherever you save the tarred file. Then run the following command from the R console:
 
-   > install.packages("AFLPsim_0.3-3.tar.gz", repos=NULL, type="source")
+   > install.packages("AFLPsim_0.4-1.tar.gz", repos=NULL, type="source")
 
 
 To install the development version of AFLPsim, it's easiest to use the `devtools` package:
